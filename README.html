@@ -3,75 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>使用说明 · LabMeeting</title>
+  <title>LabMeeting 使用与写作规范 · LabMeeting</title>
   <link rel="stylesheet" href="shared/presentation.css">
   <link rel="stylesheet" href="shared/documentation.css">
 </head>
 <body class="documentation">
-  <header class="doc-header"><a href="index.html" class="doc-brand">LAB MEETING</a><span>使用说明</span><a href="index.html">返回演示稿目录 ↗</a></header>
+  <header class="doc-header"><a href="index.html" class="doc-brand">LAB MEETING</a><span>文档</span><a href="index.html">返回演示稿目录 ↗</a></header>
   <div class="doc-layout">
-    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="说明目录"><a href="#section-7">方法一：复制后直接打开（不需要服务器）</a><a href="#section-19">方法二：在当前服务器上启动</a><a href="#section-62">中期报告</a><a href="#section-68">演示操作</a><a href="#section-90">文件组织与复用</a></nav></aside>
-    <main class="doc-content"><h1 id="section-1">LabMeeting 网页演示稿</h1>
-<p>可直接复制的论文组会演示稿。采用纯 HTML / CSS / JavaScript；没有 npm、构建步骤、CDN、在线字体或第三方运行依赖。浏览器打开演示稿本身不需要联网，页脚的论文与代码链接需要联网。中文字体随文件夹附带，无需在系统安装。</p>
-<p>浏览器阅读说明请打开 <a href="README.html">README.html</a>，也可以从首页点击“使用说明与服务器启动方法”。该页面已将 Markdown 排版为网页，直接双击或通过服务器访问都可以。</p>
-<h2 id="section-7">方法一：复制后直接打开（不需要服务器）</h2>
-<p>将整个 <code>LabMeeting</code> 文件夹复制到本地，使用 Chrome、Edge、Firefox 或 Safari 打开：</p>
-<div class="code-block"><span class="code-language">text</span><pre><code>LabMeeting/2026_11_10_Video_Numerical_Continuation/index.html</code></pre></div>
-<p>也可以双击 <code>LabMeeting/index.html</code>，从首页选择论文分享或中期报告。所有样式和脚本都通过相对路径加载，适用于 <code>file://</code>，不需要安装任何库。</p>
-<p>请复制整个 <code>LabMeeting</code>，不要只复制日期文件夹，因为各次报告共用 <code>shared/</code> 内的主题和翻页脚本。</p>
-<h2 id="section-19">方法二：在当前服务器上启动</h2>
-<p>使用已有 Python 3 标准库，不用安装软件，也不用进入容器。在服务器终端运行：</p>
+    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="文档目录"><a href="#section-9">1. 怎么打开网页</a><a href="#section-69">2. 写作规范</a></nav></aside>
+    <main class="doc-content"><h1 id="section-1">LabMeeting 使用与写作规范</h1>
+<p>本仓库保存组会分享与项目汇报，使用 HTML / CSS / JavaScript 展示，图片、视频和简体中文字体随仓库保存。报告本身可离线打开，无需安装第三方库。</p>
+<p><a href="index.html">网页首页</a> · <a href="CONTENTS.html">各期内容简介</a> · <a href="README.html">本说明的网页版本</a></p>
+<p>本文件维护通用使用方法与写作约定。各期主题、内容简介、页数和报告链接统一维护在 <a href="CONTENTS.html">CONTENTS.md</a>，新增报告时持续更新；具体报告的操作和讲稿放在对应日期目录。</p>
+<h2 id="section-9">1. 怎么打开网页</h2>
+<h3 id="section-11">本地直接打开</h3>
+<p>下载或复制整个 <code>LabMeeting</code> 文件夹，双击根目录的 <code>index.html</code>，从首页选择报告。也可以进入某个日期目录，双击其中的 <code>index.html</code>。</p>
+<p>请保留完整目录结构：日期目录通过相对路径引用 <code>shared/</code> 的主题、脚本和字体，因此只复制某个日期目录是不完整的。使用 Chrome、Edge、Firefox 或 Safari 即可，无需 npm、构建步骤或额外安装库。</p>
+<p>说明文档可双击 <code>README.html</code>，各期内容简介可双击 <code>CONTENTS.html</code>。GitHub 上阅读对应的 <code>.md</code> 文件；本地浏览器阅读 <code>.html</code>，避免直接打开 Markdown 时显示原始文本。</p>
+<h3 id="section-19">在服务器上启动</h3>
+<p>服务器已有 Python 3 即可，不用进入容器。在终端运行：</p>
 <div class="code-block"><span class="code-language">bash</span><pre><code>cd /home/sirui/workspace/LabMeeting
 python3 serve.py --bind 0.0.0.0 --port 8000</code></pre></div>
-<p>保持这个终端运行。在服务器本机浏览器访问：</p>
+<p>保持终端运行。服务器本机浏览器访问：</p>
 <div class="code-block"><span class="code-language">text</span><pre><code>http://localhost:8000/</code></pre></div>
-<p>使用说明地址为 <code>http://localhost:8000/README.html</code>。这个服务也会将 <code>README.md</code> 自动渲染为网页，并给文本响应指定 UTF-8，避免中文乱码。原始 Markdown 可通过 <code>README.md?raw=1</code> 查看。</p>
-<p>如果已经启动了旧的 <code>python3 -m http.server</code>，可以直接访问 <code>README.html</code> 阅读排版好的说明；要让 <code>README.md</code> 地址也自动渲染，请先在旧服务终端按 <code>Ctrl+C</code>，再运行上面的新命令。</p>
-<p>直接访问这次演示稿：</p>
-<div class="code-block"><span class="code-language">text</span><pre><code>http://localhost:8000/2026_11_10_Video_Numerical_Continuation/</code></pre></div>
-<p>如果浏览器在自己的电脑上，且可以直连服务器，将 <code>localhost</code> 换成服务器的 IP 或主机名：</p>
-<div class="code-block"><span class="code-language">text</span><pre><code>http://服务器IP:8000/2026_11_10_Video_Numerical_Continuation/</code></pre></div>
-<p>如不便直连，可在本地电脑另开一个终端建立 SSH 转发（将 <code>服务器地址</code> 换成实际地址）：</p>
+<p>首页可进入各期报告、使用说明和内容简介。<code>serve.py</code> 会为文本指定 UTF-8，并将 <code>.md</code> 自动排版成网页；查看 Markdown 原文可在地址后加 <code>?raw=1</code>。</p>
+<p><strong>用完后，在运行服务的终端按 <code>Ctrl+C</code> 关闭。</strong> 若 8000 已占用，可以换成 8001，并同步修改访问地址和下面的 SSH 转发端口。</p>
+<h3 id="section-38">用自己的电脑访问服务器</h3>
+<p>如果可以直连服务器，将浏览器地址中的 <code>localhost</code> 换成服务器的 IP 或主机名。</p>
+<p>也可以在自己电脑的终端建立 SSH 转发，将 <code>服务器地址</code> 替换为实际地址：</p>
 <div class="code-block"><span class="code-language">bash</span><pre><code>ssh -N -L 8000:127.0.0.1:8000 sirui@服务器地址</code></pre></div>
-<p>然后用本地浏览器打开前面的 <code>http://localhost:8000/…</code> 地址。如果只使用 SSH 转发，服务器启动命令中的 <code>--bind 0.0.0.0</code> 也可以改为 <code>--bind 127.0.0.1</code>。</p>
-<p><strong>关闭网页服务：在运行 <code>serve.py</code> 的终端按 <code>Ctrl+C</code>。</strong> SSH 转发也用 <code>Ctrl+C</code> 结束。若端口 8000 已被其他程序占用，改用 8001，并同步替换访问地址和转发命令中的端口。</p>
-<p>此项目没有设置后台服务或自启动；检查结束后不保留监听端口。</p>
-<h2 id="section-62">中期报告</h2>
-<p>2026.10.24 的项目报告已整合为 <code>2026_10_24_Reference_Driven_Shader_and_Control_Maps/</code>，主题为“参考图驱动的 Shader 与控制贴图生成”，共 22 页。首页标注为“中期报告”。<a href="2026_10_24_Reference_Driven_Shader_and_Control_Maps/index.html">打开中期报告</a> · <a href="2026_10_24_Reference_Driven_Shader_and_Control_Maps/README.html">报告说明</a>。</p>
-<p>统一的 <code>serve.py</code> 同时保留中期报告第 20 页的评估转发功能，连接服务器本机 <code>127.0.0.1:7870</code>。评估应用需自行保持运行，无需额外启动 12024 报告服务或再增加报告端口转发；本次整合没有启动或重启评估应用。若统一服务在本次更新之前已启动，需要先按 <code>Ctrl+C</code>，重新运行启动命令，加载新加入的评估转发代码。</p>
-<h2 id="section-68">演示操作</h2>
-<div class="table-scroll"><table><thead><tr><th>操作</th><th>按键或入口</th></tr></thead><tbody><tr><td>返回网站首页</td><td>点击顶部“返回目录”；全屏讲解时隐藏</td></tr><tr><td>上一页 / 下一页</td><td><code>←</code> / <code>→</code>，或底部箭头</td></tr><tr><td>下一页</td><td><code>Space</code> / <code>Page Down</code></td></tr><tr><td>上一页</td><td><code>Page Up</code></td></tr><tr><td>第一页 / 最后一页</td><td><code>Home</code> / <code>End</code></td></tr><tr><td>全屏展示</td><td><code>F</code> 或右上角全屏按钮</td></tr><tr><td>退出全屏</td><td><code>Esc</code>；全屏受限时也可再次按 <code>F</code></td></tr><tr><td>跳转页面</td><td>点击底部进度短线，或 <code>M</code> 打开章节目录</td></tr><tr><td>手机翻页</td><td>左右滑动</td></tr><tr><td>查看帮助</td><td><code>?</code> 或右上角问号</td></tr><tr><td>查看第二页的概念对比</td><td>点击“直接优化 / 视频引导”</td></tr><tr><td>放大论文原图</td><td>点击实验图或“查看原图”；滚轮缩放、拖动查看</td></tr><tr><td>打印为 PDF</td><td>浏览器打印，选择横向、无边距、显示背景图形</td></tr></tbody></table></div>
-<p>在地址末尾添加 <code>#slide-2</code> 可直接打开第二页。演示画布为 1600 × 900（16:9），随窗口等比例缩放。正式展示建议使用横屏。</p>
-<p>本次论文分享为 16 页、约 15 分钟，附有 <a href="2026_11_10_Video_Numerical_Continuation/讲稿.html">逐页讲稿与备查资料</a>。House、Dragon 视频可按需展开，关闭或翻页会暂停。</p>
-<h2 id="section-90">文件组织与复用</h2>
+<p>保持转发终端运行，然后在自己电脑浏览器打开 <code>http://localhost:8000/</code>。结束时按 <code>Ctrl+C</code> 关闭转发。若只通过 SSH 转发访问，服务器启动命令可以使用 <code>--bind 127.0.0.1</code>。</p>
+<h3 id="section-50">演示与阅读操作</h3>
+<div class="table-scroll"><table><thead><tr><th>操作</th><th>按键或入口</th></tr></thead><tbody><tr><td>返回组会首页</td><td>顶部“返回目录”；全屏时隐藏</td></tr><tr><td>上一页 / 下一页</td><td><code>←</code> / <code>→</code>，或底部箭头</td></tr><tr><td>下一页 / 上一页</td><td><code>Space</code>、<code>Page Down</code> / <code>Page Up</code></td></tr><tr><td>第一页 / 最后一页</td><td><code>Home</code> / <code>End</code></td></tr><tr><td>章节目录</td><td><code>M</code> 或顶部目录按钮</td></tr><tr><td>全屏 / 退出全屏</td><td><code>F</code> / <code>Esc</code>；全屏受限时再次按 <code>F</code></td></tr><tr><td>原图放大</td><td>点击图片；滚轮缩放、拖动查看；双击或“适应窗口”复位</td></tr><tr><td>作者视频</td><td>按需打开并播放；关闭或离开页面时暂停</td></tr><tr><td>查看快捷键</td><td><code>?</code> 或顶部问号</td></tr><tr><td>打印为 PDF</td><td>浏览器打印，开启背景图形，使用无边距横向输出</td></tr></tbody></table></div>
+<p>共用模板的画布为 1600 × 900（16:9），会等比例缩放。地址末尾的 <code>#slide-2</code> 可直接进入第 2 页。历史报告的交互和锚点可能不同，以各自目录中的 <code>README</code> 为准。</p>
+<p>报告中的外部论文、代码链接需要联网。实时评估等应用入口还需要相应服务：现有中期报告通过统一网页服务转发到服务器本机的 <code>127.0.0.1:7870</code>，评估应用需另行运行；离线复制不包含实时评估能力。</p>
+<h2 id="section-69">2. 写作规范</h2>
+<p>以下约定面向后续维护者和 AI 助手。新增或修改报告前，先阅读本文件、<code>CONTENTS.md</code>、目标报告的说明与适用的 <code>AGENTS.md</code>，并以用户最新要求为准。</p>
+<h3 id="section-73">文件组织与复用</h3>
 <div class="code-block"><span class="code-language">text</span><pre><code>LabMeeting/
-├── README.md
-├── README.html                         # 可离线阅读的排版说明页
-├── index.html                           # 演示稿目录入口
-├── serve.py                             # 标准库服务器 / 生成说明页
-├── shared/
-│   ├── presentation.css                 # 公共配色、字号、布局、打印样式
-│   ├── presentation.js                  # 公共翻页、全屏、缩放、触屏操作
-│   ├── markdown_page.py                 # 说明文档的 Markdown 排版
-│   ├── evaluation_proxy.py              # 中期报告的评估网页转发
-│   ├── documentation.css               # 说明页样式
-│   └── fonts/                          # 本地中文字体及 OFL 许可证
-├── 2026_10_24_Reference_Driven_Shader_and_Control_Maps/
-│   ├── index.html                       # 中期报告，22 页
-│   ├── README.html                      # 中期报告使用说明
-│   ├── 讲稿.md                          # 原有讲稿
-│   └── assets/                          # 原有图片、视频与字体
-└── 2026_11_10_Video_Numerical_Continuation/
-    ├── index.html                       # 这篇论文的 16 页报告与 SVG 图示
-    ├── deck.css                         # 这篇论文特有的排版
-    ├── deck.js                          # 本篇概念对比与调度演示
-    └── assets/                          # 论文原图、作者视频与来源</code></pre></div>
-<p>以后沿用 <code>YYYY_MM_DD_英文主题</code> 命名日期文件夹。复制本次日期文件夹作为起点，保持 <code>../shared/</code> 的引用不变，替换内容、日期、标题与来源链接；页脚页码和底部导航会根据 <code>.slide</code> 的数量自动生成。将新报告的链接加到根目录 <code>index.html</code> 即可。</p>
-<p>公共定义放在 <code>shared/</code>：<code>presentation.css</code> 开头的 CSS 变量定义背景、文字、强调色与字体。修改公共样式会作用于引用它的所有报告；单篇报告的调整放在自己的 <code>deck.css</code>。</p>
-<p>中文明确采用 <strong>Noto Sans SC（简体中文）</strong> 可变字体，页面语言设为 <code>zh-Hans-CN</code>，不使用日文字体或日文字形版本。字体文件来自 Google Fonts 官方仓库，以 SIL Open Font License 分发，许可证位于 <code>shared/fonts/OFL.txt</code>。后续报告共用这一份本地字体，无需重复复制，也无需安装字体。</p>
-<p>修改 <code>README.md</code> 后，运行下面命令即可更新供双击打开的说明页；使用 <code>serve.py</code> 访问 <code>README.md</code> 时会实时读取 Markdown。</p>
+├── README.md / README.html        # 通用打开方法与写作规范
+├── CONTENTS.md / CONTENTS.html    # 长期维护的各期内容简介
+├── index.html                    # 网页报告目录
+├── serve.py                      # 标准库服务器与文档生成入口
+├── shared/                       # 通用主题、交互、文档排版和简体中文字体
+└── YYYY_MM_DD_English_Topic/
+    ├── index.html                # 本期幻灯片内容
+    ├── deck.css                  # 本期排版
+    ├── deck.js                   # 本期专用交互，按需提供
+    ├── README.md / README.html    # 本期操作说明，按需提供
+    ├── 讲稿.md / 讲稿.html        # 逐页讲解、时间安排和备查材料
+    └── assets/                   # 本期原图、视频与来源记录</code></pre></div>
+<ul><li>日期目录使用 <code>YYYY_MM_DD_英文主题</code>，主题概括论文或项目内容，避免只用 <code>mid</code>、<code>test</code> 等模糊名称。报告类型在首页与内容简介中写清，如“论文分享”“中期报告”。</li><li>公共定义放在 <code>shared/</code>；单篇内容与专用布局放在日期目录。修改公共样式或脚本时，检查受影响的既有功能，保留历史报告自己的实现。</li><li>页面与资源使用相对路径，保留 <code>file://</code> 打开能力。运行不依赖 CDN、在线字体、构建工具或需要联网加载的库；不要把服务器绝对路径或本机端口写进普通资源链接。</li><li>中文明确使用简体中文字体，页面语言为 <code>zh-Hans-CN</code>；共用 <code>shared/fonts/</code> 中的 Noto Sans SC 与许可证，不使用日文字体或日文字形版本。</li></ul>
+<h3 id="section-96">内容结构与讲解</h3>
+<ul><li>按用户给定的报告时长和页数挑重点。默认沿用已认可的学术正式、清爽、有视觉变化的风格；增加实验页时同步调整讲稿用时。</li><li>每个实验先说明要解决什么、输入与目标是什么、哪些参数可优化、哪些条件固定，再展示比较与结论。先介绍案例，再分析该案例的损失曲线或参数轨迹。</li><li>缩写和数学符号首次出现要解释，例如 MSE、PSNR、PRDPT、RGBXY、LOIR、θ、λ、σ；不要只放名字或公式让听众自行猜测。</li><li>多面板图明确标出实验名称、横纵轴、颜色对应与行列含义。生成参考帧与实际渲染结果要区分；视频帧号、优化迭代数、最终目标也要分别说明。</li><li>同色点和曲线要给出对应关系，并解释为什么选择这些观察区域。例如一个区域可直接收敛，另一些区域存在错误极小值，应在图旁写明。</li><li>区分论文观察、作者解释与我们的推测；不要把生成模型的一次有效输出讲成已知物理规律或必然收敛。参数是否联合更新、是否冻结，应按实际实现说明。</li><li>幻灯片保持简洁、可直接讲述。复现细节和长篇解释放进讲稿或备查文档，不在画面堆放“非论文实验数据”等无助于讲解的声明。</li></ul>
+<h3 id="section-106">原图、视频与来源</h3>
+<ul><li>具体案例、实验结果、定量曲线和表格使用论文或作者发布的原始材料；方法与概念讲解可以使用自制 SVG、HTML 图解。没有合适原图时，先说明情况并遵循用户选择。</li><li>提取论文图片时检查完整边界、全部行列、模型名称和数字，避免截掉底部实验组。局部展示须保留可查看的完整原图；不要为了排版重画或改写实验结果。</li><li>资源放在本期 <code>assets/</code>。来源记录使用 <code>SOURCES.json</code> 等清晰文件，记录作者链接、论文页码、裁剪范围等必要信息；替换图片时同步更新记录。</li><li>用短图注解释图在比较什么，链接名称直接描述内容，例如“不同视频模型对比”。实验应在对应讲解页呈现；需要详细介绍的额外实验单独成页，不把一排未解释的图片链接当作讲解。</li><li>论文、项目与代码入口放在首页对应报告下方；本期完整资料入口也可收录到 <code>CONTENTS.md</code>。原图查看器应支持完整显示与放大，视频需有播放、暂停和离页暂停。</li></ul>
+<h3 id="section-114">导航、文档与更新</h3>
+<ul><li>顶部提供回到组会首页的入口，讲解全屏时隐藏工具栏。保留翻页、章节目录、全屏、图片查看等既有操作；不要把实现细节或“纯静态”等宣传字样塞进演示画面。</li><li>增删页面时，同步更新静态总页数、目录、首页简介、本期说明与讲稿。共用脚本会自动生成导航页码，HTML 中的静态数字和打印输出也须正确。</li><li><strong>每次新增报告，或修改主题、页数、主要内容时，都更新 <code>CONTENTS.md</code> 与首页 <code>index.html</code>。</strong> 各期简介集中维护，通用 <code>README</code> 不随每一期重复增加介绍段落。</li><li>Markdown 是文档编辑源，HTML 是供浏览器直接打开的排版版本。修改后在仓库根目录运行下面命令，同步生成各份说明与讲稿网页：</li></ul>
 <div class="code-block"><span class="code-language">bash</span><pre><code>python3 serve.py --build-docs</code></pre></div>
-<p>该命令会一并更新各日期目录中的 <code>README.html</code>。</p><footer class="doc-footer">LabMeeting · 本地可用，无需安装依赖</footer></main>
+<p>该命令处理 <code>README.md</code>、<code>CONTENTS.md</code> 和 <code>讲稿.md</code>，生成各自同目录的 <code>.html</code> 文件；两种版本都随仓库保留。</p>
+<h3 id="section-127">修改与检查范围</h3>
+<ul><li>在现有用户权限下工作。必须进入容器时，参考 <code>/home/sirui/workspace/sh/run.sh</code> 的用户方式，不以 root 运行常规代码。</li><li>仅检查本次修改直接影响的页面或功能。重点确认文字不遮挡、原图完整、资源和文档链接有效，以及新增交互能离线使用；修改通用功能时再检查相关页面。</li><li>检查用的脚本、浏览器与截图放在临时目录，用完删除；为检查启动的端口及时关闭，不操作用户原有的服务。</li></ul><footer class="doc-footer">LabMeeting · 本地可用，无需安装依赖</footer></main>
   </div>
 </body>
 </html>

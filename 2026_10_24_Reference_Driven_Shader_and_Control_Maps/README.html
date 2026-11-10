@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>使用说明 · LabMeeting</title>
+  <title>ShaderNPR 中期报告 · LabMeeting</title>
   <link rel="stylesheet" href="../shared/presentation.css">
   <link rel="stylesheet" href="../shared/documentation.css">
 </head>
 <body class="documentation">
-  <header class="doc-header"><a href="../index.html" class="doc-brand">LAB MEETING</a><span>使用说明</span><a href="../index.html">返回演示稿目录 ↗</a></header>
+  <header class="doc-header"><a href="../index.html" class="doc-brand">LAB MEETING</a><span>文档</span><a href="../index.html">返回演示稿目录 ↗</a></header>
   <div class="doc-layout">
-    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="说明目录"><a href="#section-11">通过统一服务打开</a><a href="#section-30">下载后离线打开</a><a href="#section-34">演示操作</a><a href="#section-56">第 20 页的评估网页入口</a><a href="#section-64">内容与讲述顺序</a><a href="#section-101">任务输入与输出</a><a href="#section-105">内容来源与标注</a><a href="#section-120">资源说明</a></nav></aside>
+    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="文档目录"><a href="#section-11">通过统一服务打开</a><a href="#section-30">下载后离线打开</a><a href="#section-34">演示操作</a><a href="#section-56">第 20 页的评估网页入口</a><a href="#section-64">内容与讲述顺序</a><a href="#section-101">任务输入与输出</a><a href="#section-105">内容来源与标注</a><a href="#section-120">资源说明</a></nav></aside>
     <main class="doc-content"><h1 id="section-1">ShaderNPR 中期报告</h1>
 <p>汇报人：林思睿。日期：2026.10.24。</p>
 <p>主题：<strong>参考图驱动的 Shader 与控制贴图生成</strong>。</p>
@@ -34,7 +34,7 @@ python3 serve.py --bind 0.0.0.0 --port 8000</code></pre></div>
 <p>直接以 <code>file://</code> 打开演示稿时，报告可以离线播放；实时评估入口沿用 <code>http://localhost:7870/</code>，需要相应服务或转发。</p>
 <h2 id="section-64">内容与讲述顺序</h2>
 <div class="table-scroll"><table><thead><tr><th>页码</th><th>内容</th><th>建议用时</th></tr></thead><tbody><tr><td>1–2</td><td>目标与需求</td><td>约 1.5 分钟</td></tr><tr><td>3</td><td>完整管线总览</td><td>约 1 分钟</td></tr><tr><td>4–6</td><td>预处理、相机、参考图对齐与分区</td><td>约 3 分钟</td></tr><tr><td>7–10</td><td>可微优化、灯光、明暗分档与基础结构</td><td>约 4 分钟</td></tr><tr><td>11–16</td><td>描边、法线、明暗控制与高光</td><td>约 6 分钟</td></tr><tr><td>17–20</td><td>阶段对比、视频、多模型与导出</td><td>约 3 分钟</td></tr><tr><td>21–22</td><td>局限与未来工作</td><td>约 1.5 分钟</td></tr></tbody></table></div>
-<p>每页都带独立讲稿提示，按 <code>N</code> 查看；也可阅读 <a href="讲稿.md">完整讲稿</a>。时间可按组会讨论节奏调整。</p>
+<p>每页都带独立讲稿提示，按 <code>N</code> 查看；也可阅读 <a href="讲稿.html">完整讲稿</a>。时间可按组会讨论节奏调整。</p>
 <ol><li><a href="index.html#1">封面</a></li><li><a href="index.html#2">选题动机与输入输出</a></li><li><a href="index.html#3">完整方法</a></li><li><a href="index.html#4">预处理与相机</a></li><li><a href="index.html#5">用几何条件，生成更一致的参考目标。</a></li><li><a href="index.html#6">按部件组织着色，让局部风格分别可控。</a></li><li><a href="index.html#7">让渲染误差，反向更新着色参数。</a></li><li><a href="index.html#8">先估计光从哪里来。</a></li><li><a href="index.html#9">固定灯光，再确定明暗怎么分。</a></li><li><a href="index.html#10">先拟合基础明暗，再调整 边缘光。</a></li><li><a href="index.html#11">描边第一步：宽度与颜色。</a></li><li><a href="index.html#12">描边第二步：匹配轮廓，细化颜色。</a></li><li><a href="index.html#13">优化表面法线，调整局部明暗形状。</a></li><li><a href="index.html#14">用局部控制图，细调明暗分界。</a></li><li><a href="index.html#15">高光拟合前，先找到可靠的区域。</a></li><li><a href="index.html#16">联合拟合高光范围、颜色和粗糙度。</a></li><li><a href="index.html#17">沿着完整流程，观察每一步的贡献。</a></li><li><a href="index.html#18">换视角、转灯光，检查三维表现。</a></li><li><a href="index.html#19">在多种模型上，检查同一套方法。</a></li><li><a href="index.html#20">输出 Shader 与贴图，也保留检查过程。</a></li><li><a href="index.html#21">当前局限与待改进。</a></li><li><a href="index.html#22">下一步：从单视图拟合，走向可验证的三维风格。</a></li></ol>
 <h2 id="section-101">任务输入与输出</h2>
 <p>输入为已有三维模型（含原始材质和贴图）与目标风格参考图。主要输出是 Shader、参数配置及控制贴图；同时保留原始带材质模型，配套提供应用 Shader 后的渲染图片与视频。工作重点是着色表达的拟合与生成。</p>

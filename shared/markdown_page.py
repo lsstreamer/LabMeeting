@@ -101,20 +101,31 @@ def render_markdown(source):
 
 def render_document(source, root_prefix=""):
     content, toc = render_markdown(source)
+
+    def document_link(match):
+        url = urlsplit(match.group(1))
+        if not url.scheme and not url.netloc and Path(url.path).name in ("README.md", "CONTENTS.md", "讲稿.md"):
+            return 'href="' + url._replace(path=url.path[:-3] + ".html").geturl() + '"'
+        return match.group(0)
+
+    # Markdown stays readable on GitHub; browser copies link to offline HTML.
+    content = re.sub(r'href="([^"]+)"', document_link, content)
+    heading = re.search(r"^#\s+(.+?)\s*#*\s*$", source.lstrip("\ufeff"), re.MULTILINE)
+    title = heading.group(1) if heading else "文档"
     links = "".join('<a href="#' + anchor + '">' + escape(title) + '</a>' for anchor, title in toc)
     return '''<!doctype html>
 <html lang="zh-Hans-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>使用说明 · LabMeeting</title>
+  <title>''' + escape(title) + ''' · LabMeeting</title>
   <link rel="stylesheet" href="''' + escape(root_prefix, quote=True) + '''shared/presentation.css">
   <link rel="stylesheet" href="''' + escape(root_prefix, quote=True) + '''shared/documentation.css">
 </head>
 <body class="documentation">
-  <header class="doc-header"><a href="''' + escape(root_prefix, quote=True) + '''index.html" class="doc-brand">LAB MEETING</a><span>使用说明</span><a href="''' + escape(root_prefix, quote=True) + '''index.html">返回演示稿目录 ↗</a></header>
+  <header class="doc-header"><a href="''' + escape(root_prefix, quote=True) + '''index.html" class="doc-brand">LAB MEETING</a><span>文档</span><a href="''' + escape(root_prefix, quote=True) + '''index.html">返回演示稿目录 ↗</a></header>
   <div class="doc-layout">
-    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="说明目录">''' + links + '''</nav></aside>
+    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="文档目录">''' + links + '''</nav></aside>
     <main class="doc-content">''' + content + '''<footer class="doc-footer">LabMeeting · 本地可用，无需安装依赖</footer></main>
   </div>
 </body>

@@ -43,7 +43,8 @@ class LabMeetingHandler(EvaluationHandler):
 
 
 def build_docs():
-    for source in sorted(ROOT.rglob("README.md")):
+    sources = {source for name in ("README.md", "CONTENTS.md", "讲稿.md") for source in ROOT.rglob(name)}
+    for source in sorted(sources):
         destination = source.with_suffix(".html")
         root_prefix = "../" * len(source.parent.relative_to(ROOT).parts)
         destination.write_text(render_document(source.read_text(encoding="utf-8-sig"), root_prefix=root_prefix), encoding="utf-8")
@@ -55,7 +56,7 @@ def main():
     parser.add_argument("--port", type=int, default=8000)
     parser.add_argument("--bind", default="0.0.0.0")
     parser.add_argument("--evaluation-port", type=int, default=7870)
-    parser.add_argument("--build-docs", action="store_true", help="Update README.html and exit")
+    parser.add_argument("--build-docs", action="store_true", help="Generate HTML versions of README.md, CONTENTS.md and 讲稿.md, then exit")
     args = parser.parse_args()
     if args.build_docs:
         build_docs()
