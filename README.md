@@ -8,6 +8,35 @@
 
 ## 1. 怎么打开网页
 
+### 在线访问与更新（GitHub Pages）
+
+网站地址：[https://lsstreamer.github.io/LabMeeting/](https://lsstreamer.github.io/LabMeeting/)。分享这个地址即可让其他人打开报告，不需要服务器终端一直运行。
+
+本仓库已开启 GitHub Pages，发布来源为 `main` 分支的根目录。以后修改后提交并推送到 `main`，GitHub 会自动重新部署，网址不变，无需再次配置 Pages。[GitHub 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+
+如果修改了 `README.md`、`CONTENTS.md` 或 `讲稿.md`，先在仓库根目录同步生成对应的 HTML 网页：
+
+```bash
+cd /home/sirui/workspace/LabMeeting
+python3 serve.py --build-docs
+```
+
+只修改幻灯片的 HTML、CSS、JavaScript、图片或视频时，可以跳过这一步。该命令用于转换说明与讲稿，不会启动服务器；后续由 AI 助手修改这些 Markdown 文档时，应一起生成 HTML。
+
+然后提交并上传本次修改：
+
+```bash
+cd /home/sirui/workspace/LabMeeting
+git status --short
+git add -A
+git commit -m "Update meeting slides and notes"
+git push origin main
+```
+
+`git status --short` 用于查看本次修改；`git add -A` 会纳入新增、修改和删除的文件。提交说明可以换成对本次改动的概括。若显示 `nothing to commit`，说明当前没有新的文件改动；若有已提交但尚未上传的内容，仍可执行 `git push origin main`。
+
+推送后在 [Actions 页面](https://github.com/lsstreamer/LabMeeting/actions) 查看最新的 `pages build and deployment`，部署成功后再刷新网站。若浏览器仍显示旧内容，可以按 `Ctrl+F5` 强制刷新；macOS 使用 `Cmd+Shift+R`。
+
 ### 本地直接打开
 
 下载或复制整个 `LabMeeting` 文件夹，双击根目录的 `index.html`，从首页选择报告。也可以进入某个日期目录，双击其中的 `index.html`。
@@ -64,7 +93,7 @@ ssh -N -L 8000:127.0.0.1:8000 sirui@服务器地址
 
 共用模板的画布为 1600 × 900（16:9），会等比例缩放。地址末尾的 `#slide-2` 可直接进入第 2 页。历史报告的交互和锚点可能不同，以各自目录中的 `README` 为准。
 
-报告中的外部论文、代码链接需要联网。实时评估等应用入口还需要相应服务：现有中期报告通过统一网页服务转发到服务器本机的 `127.0.0.1:7870`，评估应用需另行运行；离线复制不包含实时评估能力。
+报告中的外部论文、代码链接需要联网。
 
 ## 2. 写作规范
 

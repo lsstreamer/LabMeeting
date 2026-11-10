@@ -113,54 +113,6 @@
   document.getElementById('close-notes').addEventListener('click', () => toggleNotes(false));
   document.getElementById('fullscreen').addEventListener('click', fullscreen);
 
-  const evaluationLink = document.getElementById('evaluation-link');
-  const evaluationStatus = document.getElementById('evaluation-status');
-  const useEvaluationProxy = location.protocol === 'http:' || location.protocol === 'https:';
-  if (useEvaluationProxy) {
-    evaluationLink.href = new URL('/__evaluation__/', location.href).href;
-  }
-  let checkingEvaluation = false;
-  evaluationLink.addEventListener('click', async event => {
-    event.preventDefault();
-    if (checkingEvaluation) return;
-    checkingEvaluation = true;
-    evaluationLink.setAttribute('aria-busy', 'true');
-    evaluationStatus.classList.remove('is-unavailable');
-    evaluationStatus.textContent = '正在检查…';
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
-    try {
-      if (useEvaluationProxy) {
-        // Reuse the SSH connection that already serves the presentation.
-        // This avoids cross-origin/local-network checks in the browser.
-        const response = await fetch('/__evaluation_status__', {
-          cache: 'no-store', signal: controller.signal,
-        });
-        if (response.status === 404) throw new Error('ProxyUnavailable');
-        if (!response.ok || !(await response.json()).available) throw new Error('Unavailable');
-      } else {
-        // Direct file opening remains portable when a separate 7870 tunnel
-        // has already been established on the viewer's own computer.
-        const response = await fetch(evaluationLink.href, {
-          mode: 'no-cors', cache: 'no-store', credentials: 'omit',
-          referrerPolicy: 'no-referrer', signal: controller.signal,
-        });
-        if (response.type !== 'opaque' && !response.ok) throw new Error('Unavailable');
-      }
-      evaluationStatus.textContent = '正在打开…';
-      // Same-tab navigation works after the asynchronous check without popups.
-      window.location.assign(evaluationLink.href);
-    } catch (error) {
-      evaluationStatus.classList.add('is-unavailable');
-      evaluationStatus.textContent = error.message === 'ProxyUnavailable'
-        ? '当前汇报服务未启用评估转发' : '网页未打开';
-    } finally {
-      clearTimeout(timeout);
-      checkingEvaluation = false;
-      evaluationLink.removeAttribute('aria-busy');
-    }
-  });
-
   const range = document.getElementById('compare-range');
   if (range) range.addEventListener('input', () => {
     document.getElementById('comparison').style.setProperty('--split', `${range.value}%`);

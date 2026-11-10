@@ -30,9 +30,9 @@
 项目：ShaderNPR。输入已有三维模型及风格参考图，通过可微渲染拟合着色参数与控制贴图，输出可编辑的 Shader、参数配置和贴图。
 
 - 方法主线：参考图预处理与相机对齐、部件分区、分阶段灯光和明暗拟合，以及描边、法线、高光与控制贴图优化。
-- 结果展示：以 Avatar03 串联完整流程，并用 Avatar01–06、ice、lion 展示多模型结果；配有阶段对比、转台与旋转光照视频、导出和评估入口。
+- 结果展示：以 Avatar03 串联完整流程，并用 Avatar01–06、ice、lion 展示多模型结果；配有阶段对比、转台与旋转光照视频，并说明导出产物。
 - 讨论内容：当前方法的局限、统一定量评价、多视图与可验证三维风格等后续方向。
-- 展示资料：本地保存的项目结果与来源记录、22 页讲稿、完整汇报预览。实时评估入口需要另行运行评估应用，详见本期说明。
+- 展示资料：本地保存的项目结果与来源记录、22 页讲稿、完整汇报预览。
 
 [打开中期报告](2026_10_24_Reference_Driven_Shader_and_Control_Maps/index.html) · [本期操作说明](2026_10_24_Reference_Driven_Shader_and_Control_Maps/README.html) · [讲稿](2026_10_24_Reference_Driven_Shader_and_Control_Maps/讲稿.html) · [完整汇报预览](2026_10_24_Reference_Driven_Shader_and_Control_Maps/完整汇报预览.jpg)
 

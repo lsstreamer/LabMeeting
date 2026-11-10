@@ -10,17 +10,32 @@
 <body class="documentation">
   <header class="doc-header"><a href="index.html" class="doc-brand">LAB MEETING</a><span>文档</span><a href="index.html">返回演示稿目录 ↗</a></header>
   <div class="doc-layout">
-    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="文档目录"><a href="#section-9">1. 怎么打开网页</a><a href="#section-69">2. 写作规范</a></nav></aside>
+    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="文档目录"><a href="#section-9">1. 怎么打开网页</a><a href="#section-98">2. 写作规范</a></nav></aside>
     <main class="doc-content"><h1 id="section-1">LabMeeting 使用与写作规范</h1>
 <p>本仓库保存组会分享与项目汇报，使用 HTML / CSS / JavaScript 展示，图片、视频和简体中文字体随仓库保存。报告本身可离线打开，无需安装第三方库。</p>
 <p><a href="index.html">网页首页</a> · <a href="CONTENTS.html">各期内容简介</a> · <a href="README.html">本说明的网页版本</a></p>
 <p>本文件维护通用使用方法与写作约定。各期主题、内容简介、页数和报告链接统一维护在 <a href="CONTENTS.html">CONTENTS.md</a>，新增报告时持续更新；具体报告的操作和讲稿放在对应日期目录。</p>
 <h2 id="section-9">1. 怎么打开网页</h2>
-<h3 id="section-11">本地直接打开</h3>
+<h3 id="section-11">在线访问与更新（GitHub Pages）</h3>
+<p>网站地址：<a href="https://lsstreamer.github.io/LabMeeting/" target="_blank" rel="noopener noreferrer">https://lsstreamer.github.io/LabMeeting/</a>。分享这个地址即可让其他人打开报告，不需要服务器终端一直运行。</p>
+<p>本仓库已开启 GitHub Pages，发布来源为 <code>main</code> 分支的根目录。以后修改后提交并推送到 <code>main</code>，GitHub 会自动重新部署，网址不变，无需再次配置 Pages。<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener noreferrer">GitHub 官方说明</a></p>
+<p>如果修改了 <code>README.md</code>、<code>CONTENTS.md</code> 或 <code>讲稿.md</code>，先在仓库根目录同步生成对应的 HTML 网页：</p>
+<div class="code-block"><span class="code-language">bash</span><pre><code>cd /home/sirui/workspace/LabMeeting
+python3 serve.py --build-docs</code></pre></div>
+<p>只修改幻灯片的 HTML、CSS、JavaScript、图片或视频时，可以跳过这一步。该命令用于转换说明与讲稿，不会启动服务器；后续由 AI 助手修改这些 Markdown 文档时，应一起生成 HTML。</p>
+<p>然后提交并上传本次修改：</p>
+<div class="code-block"><span class="code-language">bash</span><pre><code>cd /home/sirui/workspace/LabMeeting
+git status --short
+git add -A
+git commit -m &quot;Update meeting slides and notes&quot;
+git push origin main</code></pre></div>
+<p><code>git status --short</code> 用于查看本次修改；<code>git add -A</code> 会纳入新增、修改和删除的文件。提交说明可以换成对本次改动的概括。若显示 <code>nothing to commit</code>，说明当前没有新的文件改动；若有已提交但尚未上传的内容，仍可执行 <code>git push origin main</code>。</p>
+<p>推送后在 <a href="https://github.com/lsstreamer/LabMeeting/actions" target="_blank" rel="noopener noreferrer">Actions 页面</a> 查看最新的 <code>pages build and deployment</code>，部署成功后再刷新网站。若浏览器仍显示旧内容，可以按 <code>Ctrl+F5</code> 强制刷新；macOS 使用 <code>Cmd+Shift+R</code>。</p>
+<h3 id="section-40">本地直接打开</h3>
 <p>下载或复制整个 <code>LabMeeting</code> 文件夹，双击根目录的 <code>index.html</code>，从首页选择报告。也可以进入某个日期目录，双击其中的 <code>index.html</code>。</p>
 <p>请保留完整目录结构：日期目录通过相对路径引用 <code>shared/</code> 的主题、脚本和字体，因此只复制某个日期目录是不完整的。使用 Chrome、Edge、Firefox 或 Safari 即可，无需 npm、构建步骤或额外安装库。</p>
 <p>说明文档可双击 <code>README.html</code>，各期内容简介可双击 <code>CONTENTS.html</code>。GitHub 上阅读对应的 <code>.md</code> 文件；本地浏览器阅读 <code>.html</code>，避免直接打开 Markdown 时显示原始文本。</p>
-<h3 id="section-19">在服务器上启动</h3>
+<h3 id="section-48">在服务器上启动</h3>
 <p>服务器已有 Python 3 即可，不用进入容器。在终端运行：</p>
 <div class="code-block"><span class="code-language">bash</span><pre><code>cd /home/sirui/workspace/LabMeeting
 python3 serve.py --bind 0.0.0.0 --port 8000</code></pre></div>
@@ -28,18 +43,18 @@ python3 serve.py --bind 0.0.0.0 --port 8000</code></pre></div>
 <div class="code-block"><span class="code-language">text</span><pre><code>http://localhost:8000/</code></pre></div>
 <p>首页可进入各期报告、使用说明和内容简介。<code>serve.py</code> 会为文本指定 UTF-8，并将 <code>.md</code> 自动排版成网页；查看 Markdown 原文可在地址后加 <code>?raw=1</code>。</p>
 <p><strong>用完后，在运行服务的终端按 <code>Ctrl+C</code> 关闭。</strong> 若 8000 已占用，可以换成 8001，并同步修改访问地址和下面的 SSH 转发端口。</p>
-<h3 id="section-38">用自己的电脑访问服务器</h3>
+<h3 id="section-67">用自己的电脑访问服务器</h3>
 <p>如果可以直连服务器，将浏览器地址中的 <code>localhost</code> 换成服务器的 IP 或主机名。</p>
 <p>也可以在自己电脑的终端建立 SSH 转发，将 <code>服务器地址</code> 替换为实际地址：</p>
 <div class="code-block"><span class="code-language">bash</span><pre><code>ssh -N -L 8000:127.0.0.1:8000 sirui@服务器地址</code></pre></div>
 <p>保持转发终端运行，然后在自己电脑浏览器打开 <code>http://localhost:8000/</code>。结束时按 <code>Ctrl+C</code> 关闭转发。若只通过 SSH 转发访问，服务器启动命令可以使用 <code>--bind 127.0.0.1</code>。</p>
-<h3 id="section-50">演示与阅读操作</h3>
+<h3 id="section-79">演示与阅读操作</h3>
 <div class="table-scroll"><table><thead><tr><th>操作</th><th>按键或入口</th></tr></thead><tbody><tr><td>返回组会首页</td><td>顶部“返回目录”；全屏时隐藏</td></tr><tr><td>上一页 / 下一页</td><td><code>←</code> / <code>→</code>，或底部箭头</td></tr><tr><td>下一页 / 上一页</td><td><code>Space</code>、<code>Page Down</code> / <code>Page Up</code></td></tr><tr><td>第一页 / 最后一页</td><td><code>Home</code> / <code>End</code></td></tr><tr><td>章节目录</td><td><code>M</code> 或顶部目录按钮</td></tr><tr><td>全屏 / 退出全屏</td><td><code>F</code> / <code>Esc</code>；全屏受限时再次按 <code>F</code></td></tr><tr><td>原图放大</td><td>点击图片；滚轮缩放、拖动查看；双击或“适应窗口”复位</td></tr><tr><td>作者视频</td><td>按需打开并播放；关闭或离开页面时暂停</td></tr><tr><td>查看快捷键</td><td><code>?</code> 或顶部问号</td></tr><tr><td>打印为 PDF</td><td>浏览器打印，开启背景图形，使用无边距横向输出</td></tr></tbody></table></div>
 <p>共用模板的画布为 1600 × 900（16:9），会等比例缩放。地址末尾的 <code>#slide-2</code> 可直接进入第 2 页。历史报告的交互和锚点可能不同，以各自目录中的 <code>README</code> 为准。</p>
-<p>报告中的外部论文、代码链接需要联网。实时评估等应用入口还需要相应服务：现有中期报告通过统一网页服务转发到服务器本机的 <code>127.0.0.1:7870</code>，评估应用需另行运行；离线复制不包含实时评估能力。</p>
-<h2 id="section-69">2. 写作规范</h2>
+<p>报告中的外部论文、代码链接需要联网。</p>
+<h2 id="section-98">2. 写作规范</h2>
 <p>以下约定面向后续维护者和 AI 助手。新增或修改报告前，先阅读本文件、<code>CONTENTS.md</code>、目标报告的说明与适用的 <code>AGENTS.md</code>，并以用户最新要求为准。</p>
-<h3 id="section-73">文件组织与复用</h3>
+<h3 id="section-102">文件组织与复用</h3>
 <div class="code-block"><span class="code-language">text</span><pre><code>LabMeeting/
 ├── README.md / README.html        # 通用打开方法与写作规范
 ├── CONTENTS.md / CONTENTS.html    # 长期维护的各期内容简介
@@ -54,15 +69,15 @@ python3 serve.py --bind 0.0.0.0 --port 8000</code></pre></div>
     ├── 讲稿.md / 讲稿.html        # 逐页讲解、时间安排和备查材料
     └── assets/                   # 本期原图、视频与来源记录</code></pre></div>
 <ul><li>日期目录使用 <code>YYYY_MM_DD_英文主题</code>，主题概括论文或项目内容，避免只用 <code>mid</code>、<code>test</code> 等模糊名称。报告类型在首页与内容简介中写清，如“论文分享”“中期报告”。</li><li>公共定义放在 <code>shared/</code>；单篇内容与专用布局放在日期目录。修改公共样式或脚本时，检查受影响的既有功能，保留历史报告自己的实现。</li><li>页面与资源使用相对路径，保留 <code>file://</code> 打开能力。运行不依赖 CDN、在线字体、构建工具或需要联网加载的库；不要把服务器绝对路径或本机端口写进普通资源链接。</li><li>中文明确使用简体中文字体，页面语言为 <code>zh-Hans-CN</code>；共用 <code>shared/fonts/</code> 中的 Noto Sans SC 与许可证，不使用日文字体或日文字形版本。</li></ul>
-<h3 id="section-96">内容结构与讲解</h3>
+<h3 id="section-125">内容结构与讲解</h3>
 <ul><li>按用户给定的报告时长和页数挑重点。默认沿用已认可的学术正式、清爽、有视觉变化的风格；增加实验页时同步调整讲稿用时。</li><li>每个实验先说明要解决什么、输入与目标是什么、哪些参数可优化、哪些条件固定，再展示比较与结论。先介绍案例，再分析该案例的损失曲线或参数轨迹。</li><li>缩写和数学符号首次出现要解释，例如 MSE、PSNR、PRDPT、RGBXY、LOIR、θ、λ、σ；不要只放名字或公式让听众自行猜测。</li><li>多面板图明确标出实验名称、横纵轴、颜色对应与行列含义。生成参考帧与实际渲染结果要区分；视频帧号、优化迭代数、最终目标也要分别说明。</li><li>同色点和曲线要给出对应关系，并解释为什么选择这些观察区域。例如一个区域可直接收敛，另一些区域存在错误极小值，应在图旁写明。</li><li>区分论文观察、作者解释与我们的推测；不要把生成模型的一次有效输出讲成已知物理规律或必然收敛。参数是否联合更新、是否冻结，应按实际实现说明。</li><li>幻灯片保持简洁、可直接讲述。复现细节和长篇解释放进讲稿或备查文档，不在画面堆放“非论文实验数据”等无助于讲解的声明。</li></ul>
-<h3 id="section-106">原图、视频与来源</h3>
+<h3 id="section-135">原图、视频与来源</h3>
 <ul><li>具体案例、实验结果、定量曲线和表格使用论文或作者发布的原始材料；方法与概念讲解可以使用自制 SVG、HTML 图解。没有合适原图时，先说明情况并遵循用户选择。</li><li>提取论文图片时检查完整边界、全部行列、模型名称和数字，避免截掉底部实验组。局部展示须保留可查看的完整原图；不要为了排版重画或改写实验结果。</li><li>资源放在本期 <code>assets/</code>。来源记录使用 <code>SOURCES.json</code> 等清晰文件，记录作者链接、论文页码、裁剪范围等必要信息；替换图片时同步更新记录。</li><li>用短图注解释图在比较什么，链接名称直接描述内容，例如“不同视频模型对比”。实验应在对应讲解页呈现；需要详细介绍的额外实验单独成页，不把一排未解释的图片链接当作讲解。</li><li>论文、项目与代码入口放在首页对应报告下方；本期完整资料入口也可收录到 <code>CONTENTS.md</code>。原图查看器应支持完整显示与放大，视频需有播放、暂停和离页暂停。</li></ul>
-<h3 id="section-114">导航、文档与更新</h3>
+<h3 id="section-143">导航、文档与更新</h3>
 <ul><li>顶部提供回到组会首页的入口，讲解全屏时隐藏工具栏。保留翻页、章节目录、全屏、图片查看等既有操作；不要把实现细节或“纯静态”等宣传字样塞进演示画面。</li><li>增删页面时，同步更新静态总页数、目录、首页简介、本期说明与讲稿。共用脚本会自动生成导航页码，HTML 中的静态数字和打印输出也须正确。</li><li><strong>每次新增报告，或修改主题、页数、主要内容时，都更新 <code>CONTENTS.md</code> 与首页 <code>index.html</code>。</strong> 各期简介集中维护，通用 <code>README</code> 不随每一期重复增加介绍段落。</li><li>Markdown 是文档编辑源，HTML 是供浏览器直接打开的排版版本。修改后在仓库根目录运行下面命令，同步生成各份说明与讲稿网页：</li></ul>
 <div class="code-block"><span class="code-language">bash</span><pre><code>python3 serve.py --build-docs</code></pre></div>
 <p>该命令处理 <code>README.md</code>、<code>CONTENTS.md</code> 和 <code>讲稿.md</code>，生成各自同目录的 <code>.html</code> 文件；两种版本都随仓库保留。</p>
-<h3 id="section-127">修改与检查范围</h3>
+<h3 id="section-156">修改与检查范围</h3>
 <ul><li>在现有用户权限下工作。必须进入容器时，参考 <code>/home/sirui/workspace/sh/run.sh</code> 的用户方式，不以 root 运行常规代码。</li><li>仅检查本次修改直接影响的页面或功能。重点确认文字不遮挡、原图完整、资源和文档链接有效，以及新增交互能离线使用；修改通用功能时再检查相关页面。</li><li>检查用的脚本、浏览器与截图放在临时目录，用完删除；为检查启动的端口及时关闭，不操作用户原有的服务。</li></ul><footer class="doc-footer">LabMeeting · 本地可用，无需安装依赖</footer></main>
   </div>
 </body>

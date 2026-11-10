@@ -137,19 +137,10 @@
 .delivery-item>span{font-family:var(--mono);font-size:12px;color:#97aa83;margin-top:6px}
 .delivery-slide .delivery-item h3{font-size:21px;line-height:1.5;font-weight:500;letter-spacing:-.3px}
 .delivery-slide .delivery-item p{font-size:16px;line-height:1.75;color:var(--muted);margin-top:10px}
-.delivery-slide .delivery-evaluation{align-items:center;gap:16px;padding:22px 24px;background:#e8efdf;border-color:#cbd9c1}
-.delivery-evaluation>span{align-self:flex-start;margin-top:5px}
-.evaluation-copy{flex:1;min-width:0}
-.delivery-slide .delivery-evaluation h3{font-size:23px}
-.delivery-slide .delivery-evaluation p{margin-top:7px}
-.evaluation-entry{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:190px;flex-shrink:0;margin:0}
-.evaluation-link{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 18px;background:#2d503d;border:1px solid #2d503d;border-radius:6px;font-size:16px;color:#f5f7ed;line-height:1.5;box-shadow:0 4px 10px #304c3210;transition:background .15s,box-shadow .15s}
-.evaluation-link>span{font-size:21px;line-height:1}
-.evaluation-link:hover{background:#3b6349;box-shadow:0 6px 14px #304c3220}
-.evaluation-link[aria-busy=true]{opacity:.65;cursor:progress}
-.evaluation-status{font-size:12px;line-height:1.6;color:#657d58}
-.evaluation-status:empty{display:none}
-.evaluation-status.is-unavailable{color:#936c42}
+.delivery-slide .delivery-preview{align-items:center;gap:16px;padding:22px 24px;background:#e8efdf;border-color:#cbd9c1}
+.delivery-preview>span{align-self:flex-start;margin-top:5px}
+.delivery-slide .delivery-preview h3{font-size:23px}
+.delivery-slide .delivery-preview p{margin-top:7px}
 .limitations-layout{display:grid;grid-template-columns:580px 1fr;gap:75px;margin-top:31px}
 .limitation-image{position:relative;height:505px;background:#edf1e5;border-radius:3px;overflow:hidden}
 .limitation-image img{height:100%;width:100%;object-fit:contain}
@@ -298,12 +289,7 @@
  .delivery-item>span{font-size:10px;margin-top:4px}
  .delivery-slide .delivery-item h3{font-size:18px}
  .delivery-slide .delivery-item p{font-size:13px;margin-top:7px}
- .delivery-slide .delivery-evaluation{flex-wrap:wrap;align-items:flex-start}
- .evaluation-copy{flex-basis:calc(100% - 32px)}
- .evaluation-entry{width:auto;min-width:175px;max-width:calc(100% - 27px);gap:7px;margin:6px 0 0 27px}
- .evaluation-link{font-size:13px;padding:11px 15px;gap:22px}
- .evaluation-link>span{font-size:18px}
- .evaluation-status{font-size:11px}
+ .delivery-slide .delivery-preview{flex-wrap:wrap;align-items:flex-start}
  .limitations-layout{display:flex;flex-direction:column;gap:26px;margin-top:24px}
  .limitation-image{height:310px}
  .limitation-image>span{font-size:10px;bottom:12px;left:15px}
