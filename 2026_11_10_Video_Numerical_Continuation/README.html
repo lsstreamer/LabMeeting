@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使用说明 · LabMeeting</title>
+  <link rel="stylesheet" href="../shared/presentation.css">
+  <link rel="stylesheet" href="../shared/documentation.css">
+</head>
+<body class="documentation">
+  <header class="doc-header"><a href="../index.html" class="doc-brand">LAB MEETING</a><span>使用说明</span><a href="../index.html">返回演示稿目录 ↗</a></header>
+  <div class="doc-layout">
+    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="说明目录"><a href="#section-9">操作</a><a href="#section-18">离线使用与服务器</a><a href="#section-31">编辑与复用</a></nav></aside>
+    <main class="doc-content"><h1 id="section-1">Video Numerical Continuation · 组会报告</h1>
+<p>2026.11.10，16 页，约 15 分钟。重点讲解可微渲染中的参数、视频数值延拓、代表性实验、方法局限及多采样讨论。</p>
+<p><a href="index.html">打开演示稿</a> · <a href="讲稿.html">15 分钟讲稿与备查资料</a> · <a href="../index.html">返回组会首页</a></p>
+<p>第 6 页介绍 PRDPT 与 RGBXY，第 7 页先展示 PenguinGirl / SandCastle 位姿实验，第 8 页再解释对应的损失地形与 σ / λ 变化；第 9 页介绍 6D / 多物体、真实照片和全局光照位姿实验。</p>
+<h2 id="section-9">操作</h2>
+<ul><li><code>←</code> / <code>→</code> 翻页；<code>F</code> 全屏；<code>Esc</code> 退出。</li><li><code>M</code> 或顶部“章节目录”跳转到任意页；全屏中也可按 <code>M</code>。</li><li>顶部“返回目录”回到网站首页，全屏讲解时隐藏。</li><li>点击实验图查看原图；滚轮缩放、拖动查看，双击或“适应窗口”复位。</li><li>第 5、11 页可展开 House、Dragon 作者视频对比；视频按需播放，关闭与翻页会暂停。</li><li>其他实验通过相关页面内的原图链接查看，不额外增加幻灯片。</li></ul>
+<h2 id="section-18">离线使用与服务器</h2>
+<p>复制整个 <code>LabMeeting</code> 文件夹，双击其中的 <code>index.html</code> 即可；不要只复制本日期文件夹。图片、视频与简体中文字体均在本地，无需安装库。</p>
+<p>服务器启动方式见 <a href="../README.html">统一使用说明</a>。在当前服务器终端可运行：</p>
+<div class="code-block"><span class="code-language">bash</span><pre><code>cd /home/sirui/workspace/LabMeeting
+python3 serve.py --bind 0.0.0.0 --port 8000</code></pre></div>
+<p>访问 <code>http://localhost:8000/2026_11_10_Video_Numerical_Continuation/</code>。用完在终端按 <code>Ctrl+C</code> 关闭。</p>
+<h2 id="section-31">编辑与复用</h2>
+<p><code>index.html</code> 保存本次静态内容；<code>deck.css</code> 保存本篇排版；<code>deck.js</code> 保存概念对比与调度滑块。通用主题、翻页、章节目录、图片查看器和视频操作放在 <code>../shared/</code>，便于以后复用。讲稿另附逐页用时和问答材料。</p>
+<p>具体论文与作者材料的入口位于组会首页本报告下方，详细资产来源见 <code>assets/SOURCES.json</code>。</p><footer class="doc-footer">LabMeeting · 本地可用，无需安装依赖</footer></main>
+  </div>
+</body>
+</html>

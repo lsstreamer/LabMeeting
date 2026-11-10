@@ -1,0 +1,567 @@
+{
+  "paper": "Video Numerical Continuation for Differentiable Inverse Rendering",
+  "authors": [
+    "Haolin Lu",
+    "Ishit Mehta",
+    "Haodong Li",
+    "Yu Fu",
+    "Tzu-Mao Li",
+    "Ravi Ramamoorthi"
+  ],
+  "venue": "SIGGRAPH Asia 2026 Conference Track",
+  "project_page": "https://ishit.github.io/vnc/index.html",
+  "author_results": "https://suikasibyl.github.io/vnc/",
+  "code": "https://github.com/SuikaSibyl/vnc",
+  "paper_pdf": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+  "supplement_pdf": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+  "figures": [
+    {
+      "file": "figure-01-bob.png",
+      "document": "main",
+      "page": 1,
+      "crop_pdf_points": [
+        51,
+        193,
+        562,
+        423
+      ],
+      "width": 2044,
+      "height": 920,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "bae7046e3c3d36113d4af707b72c5c9545e482360849d0b19dcf4ab957eec2e4"
+    },
+    {
+      "file": "figure-2-rotation.png",
+      "figure": "Main Figure 2",
+      "source": "https://ishit.github.io/static/vnc/fig2.png",
+      "usage": "Original author figure; slide 3 displays its upper video-frame region using CSS."
+    },
+    {
+      "file": "figure-03-translation-rotation.png",
+      "document": "main",
+      "page": 3,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        287
+      ],
+      "width": 2044,
+      "height": 840,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "58e7366af58e4c496ac501f87dea2d5e05d00209fb4253e0ec07479b0a89da2c"
+    },
+    {
+      "file": "figure-04-landscapes.png",
+      "document": "main",
+      "page": 3,
+      "crop_pdf_points": [
+        51,
+        427,
+        296,
+        520
+      ],
+      "width": 980,
+      "height": 372,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "1d7d3bc6d4b3d9ca2beb02a68e84869d6d17a6d9785b69b946d183b821840927"
+    },
+    {
+      "file": "figure-05-continuation.png",
+      "document": "main",
+      "page": 4,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        262
+      ],
+      "width": 2044,
+      "height": 740,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "bb1365b3fc9ef32b7953cbb9a38181a7fa54b5adf64b4d10c180231b5079aa40"
+    },
+    {
+      "file": "figure-06-rigid.png",
+      "document": "main",
+      "page": 5,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        218
+      ],
+      "width": 2044,
+      "height": 564,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "dfd0122cef6109600cec43b48456214c021f8fcb375121b21152a0829432e45d"
+    },
+    {
+      "file": "figure-07-real-gnome.png",
+      "document": "main",
+      "page": 5,
+      "crop_pdf_points": [
+        317,
+        265,
+        562,
+        341
+      ],
+      "width": 980,
+      "height": 304,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "de222c432e945dc568ba21153a7333371b703338a08d1fb1e37593cd8236f19f"
+    },
+    {
+      "file": "figure-08-reflection.png",
+      "document": "main",
+      "page": 6,
+      "crop_pdf_points": [
+        51,
+        77,
+        296,
+        202
+      ],
+      "width": 980,
+      "height": 500,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "607a017e3649c01b8094940e39e0ca1641e413b068e88c2afe947f83047d726c"
+    },
+    {
+      "file": "figure-09-roughness.png",
+      "document": "main",
+      "page": 6,
+      "crop_pdf_points": [
+        51,
+        263,
+        296,
+        373
+      ],
+      "width": 980,
+      "height": 440,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "1d1ee111eba8b588901c902191b179bb0537fc2b323b8b0bc572f23730ecba3a"
+    },
+    {
+      "file": "figure-10-dragon.png",
+      "document": "main",
+      "page": 6,
+      "crop_pdf_points": [
+        317,
+        77,
+        562,
+        170
+      ],
+      "width": 980,
+      "height": 372,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "d1200effe1bf27e7ec2137e61f8367cb67f7081143eebcfec7b24681844166b2"
+    },
+    {
+      "file": "figure-11-inconsistency.png",
+      "document": "main",
+      "page": 6,
+      "crop_pdf_points": [
+        317,
+        237,
+        562,
+        323
+      ],
+      "width": 980,
+      "height": 344,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "48d9cf79fb0f208cf241f6eba37fe38531f288881a4e20436ceec66f1ea2ccc6"
+    },
+    {
+      "file": "figure-12-lighting.png",
+      "document": "main",
+      "page": 7,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        222
+      ],
+      "width": 2044,
+      "height": 580,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "5b26826656022d44698d7ecb63a6a280b0a27ab1a6237e3c2b510de7d9716566"
+    },
+    {
+      "file": "figure-13-multiview.png",
+      "document": "main",
+      "page": 7,
+      "crop_pdf_points": [
+        51,
+        274,
+        562,
+        545
+      ],
+      "width": 2044,
+      "height": 1084,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "5d3781a5116f48d0c3f8a725d33ef4cda2f71d4edfa69478ef310ac3b89a0730"
+    },
+    {
+      "file": "figure-14-shadow-art.png",
+      "document": "main",
+      "page": 8,
+      "crop_pdf_points": [
+        51,
+        77,
+        296,
+        218
+      ],
+      "width": 980,
+      "height": 564,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "398e6a0775d8f566c2606ed7f138ab374687fb8e3843d49af9bb4d976d7127a3"
+    },
+    {
+      "file": "figure-15-joint.png",
+      "document": "main",
+      "page": 8,
+      "crop_pdf_points": [
+        317,
+        77,
+        562,
+        247
+      ],
+      "width": 980,
+      "height": 680,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "8c74de693f466efd0aa347b50437c98184dd5752f7164705208ecf8830125a06"
+    },
+    {
+      "file": "figure-16-heart.png",
+      "document": "main",
+      "page": 9,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        244
+      ],
+      "width": 2044,
+      "height": 668,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "65c48d706dfbe92c8d39ceedb6d1d4552604ada2e828323df27f4b1c2e966109"
+    },
+    {
+      "file": "figure-17-earth-failure.png",
+      "document": "main",
+      "page": 9,
+      "crop_pdf_points": [
+        51,
+        304,
+        296,
+        369
+      ],
+      "width": 980,
+      "height": 260,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "98d400e508846e91354cd3251c1a2a55ed21f53670b400e968776b19198c689b"
+    },
+    {
+      "file": "figure-18-mug.png",
+      "document": "main",
+      "page": 9,
+      "crop_pdf_points": [
+        51,
+        437,
+        296,
+        555
+      ],
+      "width": 980,
+      "height": 472,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "e01bf2f54b7b869d554e5a922ea7063df9f7b9931b32744d1a58ccb156cc9526"
+    },
+    {
+      "file": "figure-19-skeleton.png",
+      "document": "main",
+      "page": 10,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        266
+      ],
+      "width": 2044,
+      "height": 756,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "86bbe2f454f7758d9bc322bce7fca17c01e4517ea8a4bb49b98ff51a026959a2"
+    },
+    {
+      "file": "table-01-convergence.png",
+      "document": "main",
+      "page": 10,
+      "crop_pdf_points": [
+        51,
+        385,
+        296,
+        433
+      ],
+      "width": 980,
+      "height": 192,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "4bbe34ec21057f34c052e7c3a2f5c708c8429e8a7d947d48e71a0c1afbc498fd"
+    },
+    {
+      "file": "table-02-models.png",
+      "document": "main",
+      "page": 10,
+      "crop_pdf_points": [
+        317,
+        404,
+        562,
+        455
+      ],
+      "width": 980,
+      "height": 204,
+      "source": "https://ishit.github.io/static/papers/haolin_siga26.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "a4d6e392e62a260c2eb3a0d902338e168682ac88ff9f49f797133fa53128a04d"
+    },
+    {
+      "file": "supp-figure-01-models.png",
+      "document": "supplement",
+      "page": 5,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        413
+      ],
+      "width": 2044,
+      "height": 1344,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Complete original Supplement Figure 1 with all four model groups (Kling, Seedance, Veo, Wan), rasterized at 4x without redrawing experimental data.",
+      "sha256": "3b1a23fdd0a317e5ef0cae2c7ef8e191c2569202bbd0d3ce57ae50143be4ad14"
+    },
+    {
+      "file": "supp-figure-02-frame-budget.png",
+      "document": "supplement",
+      "page": 6,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        589
+      ],
+      "width": 2044,
+      "height": 2048,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "7a32bd63b047787a395bd6533fbdaec11effc5fe57639f4d81b8e0b85ec51177"
+    },
+    {
+      "file": "supp-figure-03-rectangle.png",
+      "document": "supplement",
+      "page": 7,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        294
+      ],
+      "width": 2044,
+      "height": 868,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "ef4adaa67a6c7f5b99c7d506239aea1470440dd91c133715d16b684f80d6fb94"
+    },
+    {
+      "file": "supp-figure-04-inconsistency.png",
+      "document": "supplement",
+      "page": 8,
+      "crop_pdf_points": [
+        51,
+        77,
+        562,
+        335
+      ],
+      "width": 2044,
+      "height": 1032,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "108b265d1fca55f473ab02b40a147cdcdab3ae157522df27e81b3973da470eb2"
+    },
+    {
+      "file": "supp-table-01-overview.png",
+      "document": "supplement",
+      "page": 3,
+      "crop_pdf_points": [
+        51,
+        109,
+        562,
+        413
+      ],
+      "width": 2044,
+      "height": 1216,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "faed32fa0754356c7ba5a2b35607aae129c5888a16b978a123bfac43ee4da9ec"
+    },
+    {
+      "file": "supp-table-02-hyperparameters.png",
+      "document": "supplement",
+      "page": 4,
+      "crop_pdf_points": [
+        51,
+        138,
+        562,
+        423
+      ],
+      "width": 2044,
+      "height": 1140,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "e844f4d5fcce691571f3f0747847f25ce319fa9b75f9b39af72f61bea8cbe306"
+    },
+    {
+      "file": "supp-table-03-remeshing.png",
+      "document": "supplement",
+      "page": 4,
+      "crop_pdf_points": [
+        129,
+        461,
+        482,
+        545
+      ],
+      "width": 1412,
+      "height": 336,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "3017919b5407f5f873fb11f494d7c30f89e30993a54da622155d50b359054d88"
+    },
+    {
+      "file": "supp-table-04-runtime.png",
+      "document": "supplement",
+      "page": 10,
+      "crop_pdf_points": [
+        51,
+        128,
+        562,
+        464
+      ],
+      "width": 2044,
+      "height": 1344,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "be6b5da7f6ec93cfdeaa58e938e04cde521979cb5f9bddef161586e92862fdaf"
+    },
+    {
+      "file": "supp-table-05-mse.png",
+      "document": "supplement",
+      "page": 10,
+      "crop_pdf_points": [
+        51,
+        511,
+        562,
+        691
+      ],
+      "width": 2044,
+      "height": 720,
+      "source": "https://suikasibyl.github.io/files/vnc/supplementary.pdf",
+      "usage": "Original paper region rasterized at 4x; no experimental curves or values redrawn.",
+      "sha256": "132b200e8907771b2985523f463eadf8911455d9ed31b5d4e9a2a652f31fef0c"
+    }
+  ],
+  "media": [
+    {
+      "file": "house-generated.mp4",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/pose/house/generated_ref.mp4",
+      "sha256": "217eab5325e4e82d6da5109cb5bc70578fbf70f4be863e94b8b603633b2b476a"
+    },
+    {
+      "file": "house-mse.mp4",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/pose/house/nvd.mp4",
+      "sha256": "bbac420b1723606d634eabcd079091f61350f5ae9cda871f62d60d2294a701a8"
+    },
+    {
+      "file": "house-vnc.mp4",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/pose/house/vnc.mp4",
+      "sha256": "1b728e059796e1607704e868b18fef42f336296a48895d4146538f693a8da2f2"
+    },
+    {
+      "file": "house-init.png",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/pose/house/init.png",
+      "sha256": "7cebe6600dc33c0f6afa108fcc7a6c7eba87de18218dd59cfa9d2ac0172ee2f6"
+    },
+    {
+      "file": "house-target.png",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/pose/house/gt_nv.png",
+      "sha256": "cc292a909697f540fda28adc92d212ac447ea5cdf500aef81ddd4bb19b046600"
+    },
+    {
+      "file": "dragon-generated.mp4",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/geometry/dragon/generated_video.mp4",
+      "sha256": "0e3e35c7de1302cfe97593d98fb8d0281bd8114ba27922b69d9c79990f3a90e1"
+    },
+    {
+      "file": "dragon-mse.mp4",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/geometry/dragon/mse.mp4",
+      "sha256": "012b30d348d4b8203a37a09357bfa11839cab1dc2928ee1be06278d238219acd"
+    },
+    {
+      "file": "dragon-vnc.mp4",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/geometry/dragon/vnc.mp4",
+      "sha256": "df8f5e404dfb45c692e8caade9dc0a79bb9676288585fb9b8095b756c5b36cac"
+    },
+    {
+      "file": "dragon-init.png",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/geometry/dragon/init_view_019.png",
+      "sha256": "134525765be2bd043bcf828ca86aa3b14089fff1a7e2382c362a83a874fc51a5"
+    },
+    {
+      "file": "dragon-target.png",
+      "source": "https://suikasibyl.github.io/vnc/results/resources/geometry/dragon/ref_view_019.png",
+      "sha256": "f10753087d3cb6e918f59ac0d1aa09ccac52cc9427470105a7f171b98ede90d7"
+    }
+  ],
+  "concept_diagrams": "Slides 1–2, method/schedule diagrams, and the PRDPT/RGBXY primer are native SVG/HTML explanations. Experimental figures, curves, and videos are original author material.",
+  "related_methods": [
+    {
+      "name": "PRDPT",
+      "title": "Plateau-Reduced Differentiable Path Tracing",
+      "authors": "Michael Fischer; Tobias Ritschel",
+      "venue": "CVPR 2023",
+      "project_page": "https://mfischer-ucl.github.io/prdpt/",
+      "paper": "https://mfischer-ucl.github.io/assets/prdpt_main.pdf"
+    },
+    {
+      "name": "RGBXY / DROT",
+      "title": "Differentiable Rendering using RGBXY Derivatives and Optimal Transport",
+      "authors": "Jiankai Xing et al.",
+      "venue": "SIGGRAPH Asia 2022 / ACM TOG",
+      "project_page": "https://jkxing.github.io/academic/publication/DROT",
+      "paper": "https://sites.cs.ucsb.edu/~lingqi/publications/paper_DROT.pdf"
+    },
+    {
+      "name": "LOIR",
+      "title": "Locally Orderless Images for Optimization in Differentiable Rendering",
+      "authors": "Ishit Mehta; Manmohan Chandraker; Ravi Ramamoorthi",
+      "venue": "CVPR 2025",
+      "project_page": "https://ishit.github.io/loir/"
+    }
+  ]
+}

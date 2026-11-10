@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使用说明 · LabMeeting</title>
+  <link rel="stylesheet" href="../shared/presentation.css">
+  <link rel="stylesheet" href="../shared/documentation.css">
+</head>
+<body class="documentation">
+  <header class="doc-header"><a href="../index.html" class="doc-brand">LAB MEETING</a><span>使用说明</span><a href="../index.html">返回演示稿目录 ↗</a></header>
+  <div class="doc-layout">
+    <aside class="doc-sidebar"><p>ON THIS PAGE</p><nav aria-label="说明目录"><a href="#section-11">通过统一服务打开</a><a href="#section-30">下载后离线打开</a><a href="#section-34">演示操作</a><a href="#section-56">第 20 页的评估网页入口</a><a href="#section-64">内容与讲述顺序</a><a href="#section-101">任务输入与输出</a><a href="#section-105">内容来源与标注</a><a href="#section-120">资源说明</a></nav></aside>
+    <main class="doc-content"><h1 id="section-1">ShaderNPR 中期报告</h1>
+<p>汇报人：林思睿。日期：2026.10.24。</p>
+<p>主题：<strong>参考图驱动的 Shader 与控制贴图生成</strong>。</p>
+<p>完整汇报共 <strong>22 页</strong>，建议讲述约 <strong>20 分钟</strong>。以 Avatar03 串起完整方法，Avatar01–06、ice 与 lion 辅助展示结果。</p>
+<p>报告已整合到 <code>LabMeeting/2026_10_24_Reference_Driven_Shader_and_Control_Maps/</code>。从 <a href="../index.html">组会分享首页</a> 选择“中期报告”即可打开。</p>
+<h2 id="section-11">通过统一服务打开</h2>
+<p>在服务器上运行：</p>
+<div class="code-block"><span class="code-language">bash</span><pre><code>cd /home/sirui/workspace/LabMeeting
+python3 serve.py --bind 0.0.0.0 --port 8000</code></pre></div>
+<p>访问首页 <code>http://localhost:8000/</code>，或者直接打开：</p>
+<div class="code-block"><span class="code-language">text</span><pre><code>http://localhost:8000/2026_10_24_Reference_Driven_Shader_and_Control_Maps/</code></pre></div>
+<p>如果浏览器在本地电脑，通过已有的 8000 端口转发或服务器地址访问。启动与 SSH 转发的完整说明见 <a href="../README.html">LabMeeting 使用说明</a>。结束时在服务器终端按 <code>Ctrl+C</code>。</p>
+<p>原来的 <code>preview_server.py</code> 仍可在这份报告目录下单独启动；日常使用推荐统一入口。</p>
+<h2 id="section-30">下载后离线打开</h2>
+<p>复制整个 <code>LabMeeting</code> 文件夹，双击根目录 <code>index.html</code>，从首页进入中期报告。无需安装库或启动服务；图片、字体和视频均随文件夹附带。</p>
+<h2 id="section-34">演示操作</h2>
+<div class="table-scroll"><table><thead><tr><th>操作</th><th>功能</th></tr></thead><tbody><tr><td>顶部“返回目录”</td><td>返回组会分享首页；全屏时隐藏</td></tr><tr><td>左右方向键、空格键、底部箭头</td><td>翻页</td></tr><tr><td>底部章节导航</td><td>跳转开场、方法、结果与展望</td></tr><tr><td>“目录”或 <code>M</code></td><td>打开全部 22 页目录，点击跳转</td></tr><tr><td><code>F</code> 或右上角按钮</td><td>全屏；也可使用浏览器的全屏功能</td></tr><tr><td><code>N</code> 或“讲稿提示”</td><td>显示 / 隐藏当前页的讲述提示</td></tr><tr><td>首页拖动分隔线</td><td>对比原始外观（BaseColor 预览）与 Shader / 控制贴图生成后的最终渲染</td></tr><tr><td>第 2 页</td><td>查看选题动机，以及模型、参考图与 Shader / 贴图的输入输出关系</td></tr><tr><td>第三页点击方法节点</td><td>查看对应输出及当前案例设置</td></tr><tr><td>点击图片</td><td>打开图片查看器；滚轮缩放，放大后按住拖动；手机支持双指缩放与拖动</td></tr><tr><td>图片查看器中的 <code>＋</code> / <code>−</code>、键盘 <code>+</code> / <code>-</code></td><td>放大 / 缩小图片（25%–1200%，以适应窗口的大小为 100%）</td></tr><tr><td>图片查看器中双击、点击“复位”或按 <code>0</code></td><td>双击放大 / 还原，复位恢复完整图片；<code>Esc</code> 关闭</td></tr><tr><td>第 17 页</td><td>每次进入从基础外观开始；点击阶段查看结果与耗时，可自动演示、选择参考图或上一步，并切换滑动对比</td></tr><tr><td>第 18 页点击视频播放按钮</td><td>播放模型转台 / 旋转光照，离开该页自动暂停</td></tr><tr><td>第 19 页点击模型</td><td>打开原始 BaseColor 外观与最终结果的滑动对比；可切换模型或查看完整原图</td></tr><tr><td>第 20 页点击“进入评估网页”</td><td>通过同一汇报连接自动转发到服务器 7870；服务未运行时显示“网页未打开”</td></tr><tr><td>窄屏上下滚动、左右滑动空白区域</td><td>浏览内容、翻页</td></tr></tbody></table></div>
+<h2 id="section-56">第 20 页的评估网页入口</h2>
+<p>使用 <code>LabMeeting/serve.py</code> 启动时，评估入口复用同一个 8000 端口，通过 <code>/__evaluation__/</code> 转发到服务器的 <code>127.0.0.1:7870</code>，无需再单独启动 12024 的报告服务。</p>
+<p>评估应用仍需在服务器 7870 端口运行。入口会先检查服务是否可连接；没有启动时显示“网页未打开”。这里的整合不会启动或重启评估应用。</p>
+<p>直接以 <code>file://</code> 打开演示稿时，报告可以离线播放；实时评估入口沿用 <code>http://localhost:7870/</code>，需要相应服务或转发。</p>
+<h2 id="section-64">内容与讲述顺序</h2>
+<div class="table-scroll"><table><thead><tr><th>页码</th><th>内容</th><th>建议用时</th></tr></thead><tbody><tr><td>1–2</td><td>目标与需求</td><td>约 1.5 分钟</td></tr><tr><td>3</td><td>完整管线总览</td><td>约 1 分钟</td></tr><tr><td>4–6</td><td>预处理、相机、参考图对齐与分区</td><td>约 3 分钟</td></tr><tr><td>7–10</td><td>可微优化、灯光、明暗分档与基础结构</td><td>约 4 分钟</td></tr><tr><td>11–16</td><td>描边、法线、明暗控制与高光</td><td>约 6 分钟</td></tr><tr><td>17–20</td><td>阶段对比、视频、多模型与导出</td><td>约 3 分钟</td></tr><tr><td>21–22</td><td>局限与未来工作</td><td>约 1.5 分钟</td></tr></tbody></table></div>
+<p>每页都带独立讲稿提示，按 <code>N</code> 查看；也可阅读 <a href="讲稿.md">完整讲稿</a>。时间可按组会讨论节奏调整。</p>
+<ol><li><a href="index.html#1">封面</a></li><li><a href="index.html#2">选题动机与输入输出</a></li><li><a href="index.html#3">完整方法</a></li><li><a href="index.html#4">预处理与相机</a></li><li><a href="index.html#5">用几何条件，生成更一致的参考目标。</a></li><li><a href="index.html#6">按部件组织着色，让局部风格分别可控。</a></li><li><a href="index.html#7">让渲染误差，反向更新着色参数。</a></li><li><a href="index.html#8">先估计光从哪里来。</a></li><li><a href="index.html#9">固定灯光，再确定明暗怎么分。</a></li><li><a href="index.html#10">先拟合基础明暗，再调整 边缘光。</a></li><li><a href="index.html#11">描边第一步：宽度与颜色。</a></li><li><a href="index.html#12">描边第二步：匹配轮廓，细化颜色。</a></li><li><a href="index.html#13">优化表面法线，调整局部明暗形状。</a></li><li><a href="index.html#14">用局部控制图，细调明暗分界。</a></li><li><a href="index.html#15">高光拟合前，先找到可靠的区域。</a></li><li><a href="index.html#16">联合拟合高光范围、颜色和粗糙度。</a></li><li><a href="index.html#17">沿着完整流程，观察每一步的贡献。</a></li><li><a href="index.html#18">换视角、转灯光，检查三维表现。</a></li><li><a href="index.html#19">在多种模型上，检查同一套方法。</a></li><li><a href="index.html#20">输出 Shader 与贴图，也保留检查过程。</a></li><li><a href="index.html#21">当前局限与待改进。</a></li><li><a href="index.html#22">下一步：从单视图拟合，走向可验证的三维风格。</a></li></ol>
+<h2 id="section-101">任务输入与输出</h2>
+<p>输入为已有三维模型（含原始材质和贴图）与目标风格参考图。主要输出是 Shader、参数配置及控制贴图；同时保留原始带材质模型，配套提供应用 Shader 后的渲染图片与视频。工作重点是着色表达的拟合与生成。</p>
+<h2 id="section-105">内容来源与标注</h2>
+<p>主线 Avatar03 与第 19 页的八个模型均已同步项目当前保存结果；多模型展示使用原生透明最终图。Avatar03 的相机候选使用本地 <strong>DINOv3 ViT-B/16</strong>；第四页相机拟合 IoU 为 <strong>0.9471</strong>。第五页不展示生成参考图的 IoU 数值。Avatar03 的阶段图、局部裁切、视频及其封面均同步当前输出。Avatar01–06、ice 与 lion 均使用当前 DINOv3 结果，作为辅助展示。处理与来源摘要见 <code>assets/result_snapshot.json</code>。</p>
+<ul><li>主线图片来自 ShaderNPR 项目已保存的 Avatar03 结果；其他模型图来自对应输出目录。图片来源记录在 <code>assets/sources.json</code>。</li><li>最终结果使用项目新导出的透明 PNG；原始风格参考直接使用 <code>reference_preprocess/reference_rgba.png</code>；整套汇报优先直接使用 <code>out</code> 中现成的透明输出；没有对应透明版本时，才用 <code>out</code> 的同帧遮罩或背景连通区域补透明通道，保留原图 RGB 像素。相机候选的多子图诊断拼图保留原样，以保留面板、标注和可读性。局部特写在页面内裁切，点击后显示完整原图；模型渲染未重新生成。</li><li>BaseColor 图用于说明外观起点，不代表严格实验基线。</li><li><code>0.9471</code> 来自 <code>camera_alignment/pose_result.txt</code> 的 <code>final_iou</code>，属于轮廓重合度。</li><li>S03 按汇报定义为 <strong>边缘光优化</strong>，可调颜色、强度、阈值与柔和度；当前默认关闭，Avatar03 未执行。原项目仍使用 <code>shading_detail_optimization</code> / <code>detail_refine</code> 的旧名称与配置，尚未同步更名和训练逻辑。</li><li>Avatar03 使用原始 Part，共 14 个分区；P3-SAM 和 SAMPart3D 是项目支持的其他分区方式。</li><li>描边第二步的颜色 L1（0.1051 → 0.0381）来自该步骤保存的 <code>stats/step2/metrics.json</code>，只衡量匹配描边颜色，不能作为整体质量分数。</li><li>阶段图是顺序优化结果；严格消融与统一定量评价列为未来工作。</li><li>第 18 页直接使用项目最新的 1024 × 1024、24 帧 VP9 WebM 透明视频，保留原始透明通道，未经二次转码；封面为同一视频的透明 PNG 首帧。支持同时播放、暂停和回到开头，离页自动暂停。原项目文件未修改。</li><li>该汇报页播放静态结果与视频；第 20 页介绍的实时调参与 GPU 渲染能力属于原 ShaderNPR 项目的预览应用。</li></ul>
+<h2 id="section-120">资源说明</h2>
+<p>汇报内容不使用 CDN、在线字体、动态导入或项目外素材；只有点击第 20 页的评估入口时，才会通过汇报服务转发到现有评估网页。内置字体为 Noto Sans CJK SC（常规与中等字重，包含页面文字及 3,755 个常用汉字）和 Inter，授权说明见 <a href="assets/OFL-NotoSansCJK.txt">Noto Sans CJK 授权</a> 和 <a href="assets/OFL-Inter.txt">Inter 授权</a>。</p>
+<p>字体资源使用带内容摘要的文件名，更新字形后会切换资源地址，避免旧字体缓存。若已打开较早版本，更新后可按 <code>Ctrl+F5</code> 强制刷新；macOS 可按 <code>Cmd+Shift+R</code>。</p>
+<p>第 17 页的阶段耗时取自 <code>out/timing_reports/stage_summary.csv</code> 的 <code>Average</code> 列：各阶段采用最近的完整统计批次，明暗分档至高光取 10 月 24 日 21:07 批次（7 个模型），灯光取 16:41 批次（2 个模型）。这是批次均值，不是 Avatar03 单次实测；复用阶段不计时，基础外观为输入图，不标记为零耗时。来源批次与原始秒数记录在 <code>assets/result_snapshot.json</code> 的 <code>stage_timings</code> 字段。</p>
+<p>汇报中标作 Ref 的 Avatar03 对照图统一直接使用 <code>out/Avatar03/reference_preprocess/reference_rgba.png</code>，包括第 11、13、14、17 页的局部或大图对照；不做抠底或替色。第 5、7 页说明参考图生成方法时，生成目标仍展示项目的 <code>reference_alignment/generated_ref.png</code>。</p><footer class="doc-footer">LabMeeting · 本地可用，无需安装依赖</footer></main>
+  </div>
+</body>
+</html>

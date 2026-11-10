@@ -1,0 +1,806 @@
+{
+  "feature_model": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+  "images": {
+    "avatar03-final.png": {
+      "source": "out/Avatar03/shader_opt/final_result_transparent.png",
+      "source_sha256": "240a02ae0f4e56c1218674d7e1a67558a89fb372c7c78ec83a91932e18d64493",
+      "export_sha256": "240a02ae0f4e56c1218674d7e1a67558a89fb372c7c78ec83a91932e18d64493",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-base.png": {
+      "source": "out/Avatar03/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "0c0cb0f3f73a13212a2738c4722691c3de16d45d988e245c1e1fd107b8d5a2b5",
+      "export_sha256": "fa257214002f60c6923b16e9b2806f10418c5ce5fea73b8c963da1111b3933be",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-aligned.png": {
+      "source": "out/Avatar03/reference_alignment/generated_ref.png",
+      "source_sha256": "6916e331c494c6574bdc37cbbacdf6ad3f512e9fcd5c65cf9a70cc0968269aea",
+      "export_sha256": "b59213fed78a6c671afa453d82cf2f97e7f5dfc7dd1c1b2ddcff62d2de271059",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "border_connected_background",
+      "rgb_pixels_unchanged": true
+    },
+    "avatar03-reference.png": {
+      "source": "out/Avatar03/reference_preprocess/reference_rgba.png",
+      "source_sha256": "42b4e4231a9f6044dcb7f59a0943259e148bdbbda6d487ea4e249bb6c45abd9a",
+      "export_sha256": "42b4e4231a9f6044dcb7f59a0943259e148bdbbda6d487ea4e249bb6c45abd9a",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-normal.png": {
+      "source": "out/Avatar03/camera_alignment/normal.png",
+      "source_sha256": "b601fca2b3dd523c343650ff0381f8bf97e3b20345f95efabca347f8adf456f5",
+      "export_sha256": "b601fca2b3dd523c343650ff0381f8bf97e3b20345f95efabca347f8adf456f5",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-partition.png": {
+      "source": "out/Avatar03/mesh_partition/previews/original/aligned_preview.png",
+      "source_sha256": "cfb956b743873776dc998dbb8dd11d32f5feacd90e62f9c01d9bb3c638c4e2f9",
+      "export_sha256": "45f4933b72dfeaaff98499dc2e5ba3956a8a431442cfeb723cce3b1727c5fbe1",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-light-color.png": {
+      "source": "out/Avatar03/light_optimization/basecolor_optimized_light.png",
+      "source_sha256": "d4aac50c2e9e53189a2071da0d8a3f8d886dc268376a827ae25c7245e1400844",
+      "export_sha256": "f95fc39c5358581a1a1ac6b5c22acc78048ff5db4eb0cca2f72ebad601d033ff",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-bands.png": {
+      "source": "out/Avatar03/shader_opt/stage_01_shading_band_optimization/result_transparent.png",
+      "source_sha256": "90b4be70090c70447f3ad45bdbe7db03c1ea6687f7d9049e0f2a441dbf3f31c1",
+      "export_sha256": "90b4be70090c70447f3ad45bdbe7db03c1ea6687f7d9049e0f2a441dbf3f31c1",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-structure.png": {
+      "source": "out/Avatar03/shader_opt/stage_02_base_shading_optimization/result_transparent.png",
+      "source_sha256": "68fee0f3165907f1712f9853542c059649c31a312e0e64d6700c32ae9a05e41d",
+      "export_sha256": "68fee0f3165907f1712f9853542c059649c31a312e0e64d6700c32ae9a05e41d",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-outline.png": {
+      "source": "out/Avatar03/shader_opt/stage_04_outline_optimization/result_transparent.png",
+      "source_sha256": "deb64b895f59df4d20dc65d1255b4b10b9e59a3d034f4470bfdada9207fd6adf",
+      "export_sha256": "deb64b895f59df4d20dc65d1255b4b10b9e59a3d034f4470bfdada9207fd6adf",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-normals-result.png": {
+      "source": "out/Avatar03/shader_opt/stage_05_stylized_normal_optimization/result_transparent.png",
+      "source_sha256": "4618d8f951a2db6f087e21c81c12f69a90cd6260db06b6e34fb9b0287a4a4b74",
+      "export_sha256": "4618d8f951a2db6f087e21c81c12f69a90cd6260db06b6e34fb9b0287a4a4b74",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-shadow-result.png": {
+      "source": "out/Avatar03/shader_opt/stage_06_shadow_control_optimization/result_transparent.png",
+      "source_sha256": "8dcb97bc5ffcde7cd4a1ec15094161027c815e7b18c63996c33cc29a401eafab",
+      "export_sha256": "8dcb97bc5ffcde7cd4a1ec15094161027c815e7b18c63996c33cc29a401eafab",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-light-target.png": {
+      "source": "out/Avatar03/light_optimization/target_lighting.png",
+      "source_sha256": "19eccfb0f81ec2b3ec9dc528074daa899a5c16cc8adc182dee013c27854a7122",
+      "export_sha256": "63bb3f4ff2f659992069b63809f109c4856a6fa2e552f6209aca2fddbac14012",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "reference_border_connected_background",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/reference_alignment/generated_ref.png",
+      "mask_source_sha256": "6916e331c494c6574bdc37cbbacdf6ad3f512e9fcd5c65cf9a70cc0968269aea"
+    },
+    "avatar03-light-probe.png": {
+      "source": "out/Avatar03/light_optimization/optimized_light.png",
+      "source_sha256": "6105a13212f7b6750eafc26c01fa9a7f265e4868e06112f35c24c00284c14e6b",
+      "export_sha256": "9e84e0a9b35b3e6a39a66fbadfd2fa7dc3c5c0de60382e4631bc8d5277e326b5",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-band-before.png": {
+      "source": "out/Avatar03/shader_opt/stage_01_shading_band_optimization/steps/step_0000.png",
+      "source_sha256": "4b6894c011a4e132887b25d7be66134ff6e2abb1a8158b44f1783eb92af597cd",
+      "export_sha256": "d5ff28a9515b605137a30a6865aae62ccc78e890f95698d56c7611179060ef48",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-band-after.png": {
+      "source": "out/Avatar03/shader_opt/stage_01_shading_band_optimization/steps/step_0150.png",
+      "source_sha256": "f21fa758b9ddc2b1ec54cff6f3b140a0cab6fe5dd8bbf9e62b11469dd962b0e6",
+      "export_sha256": "ef7566b0020fb117548a97c89d431dd850976ddfbb428c051b501fec60e2ec0f",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-outline-match.png": {
+      "source": "out/Avatar03/shader_opt/stage_04_outline_optimization/stats/step2/outline_match_overlay.png",
+      "source_sha256": "92123008b0cda65de23d5f29a74df4b74de267d3f87cfdab01398c2df69b6353",
+      "export_sha256": "021b602a2c4343102b415988582b762c28706763e9f0d72073b68bb5bc924f85",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "border_connected_background",
+      "rgb_pixels_unchanged": true
+    },
+    "avatar03-normal-angle.png": {
+      "source": "out/Avatar03/shader_opt/stage_05_stylized_normal_optimization/stats/normal_angle.png",
+      "source_sha256": "a16b3047a217f03133c855f29f6c7f902bb9e9eca5687474b9cf45bececd00d0",
+      "export_sha256": "2e1bfc7b92a2b670e60eae21e7724fd03a6a8fa3010c9844f400785145d86cd8",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-shadow-view.png": {
+      "source": "out/Avatar03/shader_opt/stage_06_shadow_control_optimization/stats/shadow_control_view.png",
+      "source_sha256": "ebfb77702a6d6664c21841fd897ceb975508bd755f440860f0e17840ed186d72",
+      "export_sha256": "78db8c83af104ab7e1b17a5cec0efe0bf4e1b46e358b273faec9f30c978ad3d6",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar03-highlight-regions.png": {
+      "source": "out/Avatar03/shader_opt/stage_07_specular_control_optimization/stats/confidence/confidence_overlay.png",
+      "source_sha256": "da1176515a90152223ccc1e3203275366ea0fe7edc91445f03465918df726681",
+      "export_sha256": "6b68e0b8e88bdf17bcc83d39e17f10aeec849856cc0b5dc0be37c9d26b0a8990",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "border_connected_background",
+      "rgb_pixels_unchanged": true
+    },
+    "avatar03-highlight-coverage.png": {
+      "source": "out/Avatar03/shader_opt/stage_07_specular_control_optimization/stats/confidence/trainable_coverage_overlay.png",
+      "source_sha256": "d30e2fe8810d8c18118584f83c32592ddf94357f8b43494aa15593dc09c81c16",
+      "export_sha256": "ff759a1a23e1fc63c1d11dca41b12f1dd9a6c86ae0e9c9a30566fdc17387389d",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "border_connected_background",
+      "rgb_pixels_unchanged": true
+    },
+    "detail-specular-before.png": {
+      "source": "out/Avatar03/shader_opt/stage_06_shadow_control_optimization/result_transparent.png",
+      "source_sha256": "8dcb97bc5ffcde7cd4a1ec15094161027c815e7b18c63996c33cc29a401eafab",
+      "export_sha256": "8dcb97bc5ffcde7cd4a1ec15094161027c815e7b18c63996c33cc29a401eafab",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true,
+      "equivalent_opaque_source": "out/Avatar03/shader_opt/stage_07_specular_control_optimization/baseline.png"
+    },
+    "detail-specular-after.png": {
+      "source": "out/Avatar03/shader_opt/stage_07_specular_control_optimization/result_transparent.png",
+      "source_sha256": "240a02ae0f4e56c1218674d7e1a67558a89fb372c7c78ec83a91932e18d64493",
+      "export_sha256": "240a02ae0f4e56c1218674d7e1a67558a89fb372c7c78ec83a91932e18d64493",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar01-final.png": {
+      "source": "out/Avatar01/shader_opt/final_result_transparent.png",
+      "source_sha256": "1df29c0b2d01a31f4520cf3a0584c664b1b3eb8ba2bd143a334cfd6e2face85c",
+      "export_sha256": "1df29c0b2d01a31f4520cf3a0584c664b1b3eb8ba2bd143a334cfd6e2face85c",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar02-final.png": {
+      "source": "out/Avatar02/shader_opt/final_result_transparent.png",
+      "source_sha256": "8c4499e424b69d5d3160b45b16fc9f32ee8dee61da02081dded4c562d8824cb2",
+      "export_sha256": "8c4499e424b69d5d3160b45b16fc9f32ee8dee61da02081dded4c562d8824cb2",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar04-final.png": {
+      "source": "out/Avatar04/shader_opt/final_result_transparent.png",
+      "source_sha256": "f3a899de34b92fbefd897de510a6460f8483b0a703aa30f5141388916819ea4c",
+      "export_sha256": "f3a899de34b92fbefd897de510a6460f8483b0a703aa30f5141388916819ea4c",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar05-final.png": {
+      "source": "out/Avatar05/shader_opt/final_result_transparent.png",
+      "source_sha256": "fb4cf120491853c6b9aefe0758f81bacce24e59e5f9373fd945251243d66f510",
+      "export_sha256": "fb4cf120491853c6b9aefe0758f81bacce24e59e5f9373fd945251243d66f510",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar06-final.png": {
+      "source": "out/Avatar06/shader_opt/final_result_transparent.png",
+      "source_sha256": "bbb6e88f477b743ad7ee1bc8d1f9a759afd4fa729ce1e7c34c881ee182a7b909",
+      "export_sha256": "bbb6e88f477b743ad7ee1bc8d1f9a759afd4fa729ce1e7c34c881ee182a7b909",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "ice-final.png": {
+      "source": "out/ice/shader_opt/final_result_transparent.png",
+      "source_sha256": "7a69bb74f53fd9098e4c67e4852d9a3627d7e36dfc6b43ccc06fe02457502aa0",
+      "export_sha256": "7a69bb74f53fd9098e4c67e4852d9a3627d7e36dfc6b43ccc06fe02457502aa0",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "lion-final.png": {
+      "source": "out/lion/shader_opt/final_result_transparent.png",
+      "source_sha256": "47eab72a4b5eabd3a1aa73fa0772d00498857e476515fdc087b25fd9eeebf84a",
+      "export_sha256": "47eab72a4b5eabd3a1aa73fa0772d00498857e476515fdc087b25fd9eeebf84a",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-candidates.png": {
+      "source": "out/Avatar03/camera_alignment/pose_candidates.png",
+      "source_sha256": "d0aaa5c34f9f1bbe3c61eed0b04233409e2f4c8651d95f8a44f824f67bfe789c",
+      "export_sha256": "d0aaa5c34f9f1bbe3c61eed0b04233409e2f4c8651d95f8a44f824f67bfe789c",
+      "crop": null,
+      "native_transparency": false,
+      "transparency_strategy": "diagnostic_montage_preserved",
+      "reason": "Preserve panel backgrounds, labels and candidate annotations."
+    },
+    "avatar03-silhouette.png": {
+      "source": "out/Avatar03/camera_alignment/silhouette_overlay.png",
+      "source_sha256": "7c7143a55f84e29d2edc447c89073502aaee3c77977278006e64c0dc7b191ee4",
+      "export_sha256": "8fb6f2f53b8debc837fb4d4c33b224ee292e90f7667c9634995e9ffeb2696408",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "nonzero_silhouette_overlay",
+      "rgb_pixels_unchanged": true
+    },
+    "avatar03-outline-step1.png": {
+      "source": "out/Avatar03/shader_opt/stage_04_outline_optimization/stats/step1/result_transparent.png",
+      "source_sha256": "a3e8dfb39e67575fb4b092303c5d64498a29f5b54432b21d14d434d07ea21aa6",
+      "export_sha256": "a3e8dfb39e67575fb4b092303c5d64498a29f5b54432b21d14d434d07ea21aa6",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-outline-before.png": {
+      "source": "out/Avatar03/shader_opt/stage_02_base_shading_optimization/result_transparent.png",
+      "source_sha256": "68fee0f3165907f1712f9853542c059649c31a312e0e64d6700c32ae9a05e41d",
+      "export_sha256": "68fee0f3165907f1712f9853542c059649c31a312e0e64d6700c32ae9a05e41d",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-outline-step2.png": {
+      "source": "out/Avatar03/shader_opt/stage_04_outline_optimization/result_transparent.png",
+      "source_sha256": "deb64b895f59df4d20dc65d1255b4b10b9e59a3d034f4470bfdada9207fd6adf",
+      "export_sha256": "deb64b895f59df4d20dc65d1255b4b10b9e59a3d034f4470bfdada9207fd6adf",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar03-outline-reference.png": {
+      "source": "out/Avatar03/reference_preprocess/reference_rgba.png",
+      "source_sha256": "42b4e4231a9f6044dcb7f59a0943259e148bdbbda6d487ea4e249bb6c45abd9a",
+      "export_sha256": "42b4e4231a9f6044dcb7f59a0943259e148bdbbda6d487ea4e249bb6c45abd9a",
+      "crop": null,
+      "native_transparency": true,
+      "transparency_strategy": "native_out_file",
+      "rgba_pixels_unchanged": true
+    },
+    "avatar01-gallery-base.png": {
+      "source": "out/Avatar01/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "c3a9a5129a2dc748bab757967897e20e85f7fcf6e87135f22fb32d3dd83f91b2",
+      "export_sha256": "de33e5688bd11fe43cf4d703d0cdade6eeaebf5985d074e6691e81acaee251cd",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar01/camera_alignment/mask.png",
+      "mask_source_sha256": "1a29098a04c5bf4f337d9508fee9d4428cd05243fa11d6eeaea45ffcc4bb62bc"
+    },
+    "avatar02-gallery-base.png": {
+      "source": "out/Avatar02/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "c6b1f917623b7248cf8dbd7b2c650a8132e2981c03042ac820fa4fc7fa1d9bf8",
+      "export_sha256": "9dbd92f5d2d0df863bc0809291fb49962f1cbd577d1db2f91ebbe487fe494bd6",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar02/camera_alignment/mask.png",
+      "mask_source_sha256": "1cd13d6e7ce903ab0ae8f66de97357bd6e30a7c55f9fffa365afe678178bae89"
+    },
+    "avatar03-gallery-base.png": {
+      "source": "out/Avatar03/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "0c0cb0f3f73a13212a2738c4722691c3de16d45d988e245c1e1fd107b8d5a2b5",
+      "export_sha256": "fa257214002f60c6923b16e9b2806f10418c5ce5fea73b8c963da1111b3933be",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar03/camera_alignment/mask.png",
+      "mask_source_sha256": "10169a540a191913f655cf3bf6974b9181e2c76013ee54b5b6c0c4d88618fe76"
+    },
+    "avatar04-gallery-base.png": {
+      "source": "out/Avatar04/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "b4f07ef3a3394b64f330a51195fc4ff452fa47eeba8a6e3847c73e29b11d56da",
+      "export_sha256": "b4c7610d060a64b047b0ca8d8411d67b71e8addf8adf28147391b8c5a7b10779",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar04/camera_alignment/mask.png",
+      "mask_source_sha256": "2eb9857def302b727846240f65a34ab5acf8bd8f2cd732f2bfb2217b1789bb31"
+    },
+    "avatar05-gallery-base.png": {
+      "source": "out/Avatar05/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "202a10848d7a5c38f45df395b87d1926200dc312e5da99699daa33173d41e747",
+      "export_sha256": "859c300292dbc4b9a343f13c551eb879991e2f87c0bdb3ca13b9cb2ef76c72b5",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar05/camera_alignment/mask.png",
+      "mask_source_sha256": "bb06a0cd78b4955b6f059e14729a71d99dd2cd5248af7d20b534c5791e473781"
+    },
+    "avatar06-gallery-base.png": {
+      "source": "out/Avatar06/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "6b2dd47497e9840828fbe7f074bf3bb05d8600256a9cbf2ad9938ff309903181",
+      "export_sha256": "640ee73a92706fb0f2de225963fdeec4180c7ce8d49b4ece57ccda2da128a45d",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/Avatar06/camera_alignment/mask.png",
+      "mask_source_sha256": "6e0a5e923f0af3a84906cc8e8cc982b3abfa93523b16e1fe53908d63ce871643"
+    },
+    "ice-gallery-base.png": {
+      "source": "out/ice/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "20a5c66ba9c451592e941d8c721c0e0f12a4b80f962b905c4e4782f80faab691",
+      "export_sha256": "8c6e665abbef46ee1bb38ba0ac433012f8fabdf67d3e71ad6eee14550cc42e4d",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/ice/camera_alignment/mask.png",
+      "mask_source_sha256": "ee320ee010b78d031b935a98324d9a3a1183b4e3159eb75bf7f7640f51e7b638"
+    },
+    "lion-gallery-base.png": {
+      "source": "out/lion/shader_opt/stage_02_base_shading_optimization/basecolor.png",
+      "source_sha256": "a40f4d1f2d3f193badc88043e113793ef2e5d801a5a087712b2ff118960f3ff8",
+      "export_sha256": "9801c1786fce82c267d2b9a85dbbd2131412d7403d26ac46466ddecf1768ca59",
+      "crop": null,
+      "native_transparency": false,
+      "export_transparency": true,
+      "transparency_strategy": "out_camera_mask",
+      "rgb_pixels_unchanged": true,
+      "mask_source": "out/lion/camera_alignment/mask.png",
+      "mask_source_sha256": "dafdc57d448f6ef1ca37ddccca62c3709657733c5ec32644982870685f4701e7"
+    }
+  },
+  "camera_iou": 0.9471,
+  "outline_color_l1": {
+    "baseline": 0.10506457835435867,
+    "result": 0.03810827061533928
+  },
+  "normal_angle": {
+    "max_angle_deg": 15.0,
+    "color_scale_max_deg": 14.230188369750977,
+    "visible_max_deg": 14.230188369750977,
+    "visible_mean_deg": 1.8424104452133179
+  },
+  "derived_media": {
+    "avatar03-turntable.webm": {
+      "source": "out/Avatar03/shader_opt/videos/model_turntable.webm",
+      "source_sha256": "4e15a35262c9922bd7f9e632953238e46df33dd0b5c96ab9b858a4401a160cec",
+      "export_sha256": "4e15a35262c9922bd7f9e632953238e46df33dd0b5c96ab9b858a4401a160cec",
+      "native_copy": true,
+      "transparent_background": true,
+      "encoding": {
+        "codec": "vp9",
+        "lossless": true,
+        "resolution": [
+          1024,
+          1024
+        ],
+        "pixel_format": "yuva420p",
+        "fps": 24,
+        "alpha_mode": 1
+      }
+    },
+    "avatar03-light-sweep.webm": {
+      "source": "out/Avatar03/shader_opt/videos/light_sweep.webm",
+      "source_sha256": "ae8e717ff7ac40e1a3c7f571ee797d2410863818ba796899b8a6ea88b111e838",
+      "export_sha256": "ae8e717ff7ac40e1a3c7f571ee797d2410863818ba796899b8a6ea88b111e838",
+      "native_copy": true,
+      "transparent_background": true,
+      "encoding": {
+        "codec": "vp9",
+        "lossless": true,
+        "resolution": [
+          1024,
+          1024
+        ],
+        "pixel_format": "yuva420p",
+        "fps": 24,
+        "alpha_mode": 1
+      }
+    }
+  },
+  "asset_versions": {
+    "detail-specular-after.png": "240a02ae0f4e",
+    "avatar03-bands.png": "90b4be70090c",
+    "avatar03-aligned.png": "b59213fed78a",
+    "detail-specular-before.png": "8dcb97bc5ffc",
+    "avatar03-normal.png": "b601fca2b3dd",
+    "avatar02-final.png": "8c4499e424b6",
+    "avatar03-shadow-view.png": "78db8c83af10",
+    "avatar03-light-target.png": "63bb3f4ff2f6",
+    "avatar03-structure.png": "68fee0f31659",
+    "avatar03-light-probe.png": "9e84e0a9b35b",
+    "avatar03-silhouette.png": "8fb6f2f53b8d",
+    "avatar03-base.png": "fa257214002f",
+    "avatar03-shadow-result.png": "8dcb97bc5ffc",
+    "avatar03-outline.png": "deb64b895f59",
+    "avatar05-final.png": "fb4cf1204918",
+    "avatar03-highlight-regions.png": "6b68e0b8e88b",
+    "avatar03-band-before.png": "d5ff28a9515b",
+    "avatar03-final.png": "240a02ae0f4e",
+    "avatar03-band-after.png": "ef7566b0020f",
+    "avatar03-candidates.png": "d0aaa5c34f9f",
+    "ice-final.png": "7a69bb74f53f",
+    "avatar06-final.png": "bbb6e88f477b",
+    "avatar03-outline-match.png": "021b602a2c43",
+    "avatar03-partition.png": "45f4933b72df",
+    "avatar03-normals-result.png": "4618d8f951a2",
+    "avatar03-highlight-coverage.png": "ff759a1a23e1",
+    "avatar04-final.png": "f3a899de34b9",
+    "lion-final.png": "47eab72a4b5e",
+    "avatar01-final.png": "1df29c0b2d01",
+    "avatar03-reference.png": "42b4e4231a9f",
+    "avatar03-light-color.png": "f95fc39c5358",
+    "avatar03-normal-angle.png": "2e1bfc7b92a2",
+    "avatar03-outline-step1.png": "a3e8dfb39e67",
+    "avatar03-outline-before.png": "68fee0f31659",
+    "avatar03-outline-step2.png": "deb64b895f59",
+    "avatar03-outline-reference.png": "42b4e4231a9f",
+    "avatar03-turntable.webm": "4e15a35262c9",
+    "avatar03-turntable-poster.png": "df3d7c733787",
+    "avatar03-light-sweep.webm": "ae8e717ff7ac",
+    "avatar03-light-poster.png": "7062dd1ddf5e",
+    "avatar01-gallery-base.png": "de33e5688bd1",
+    "avatar02-gallery-base.png": "9dbd92f5d2d0",
+    "avatar03-gallery-base.png": "fa257214002f",
+    "avatar04-gallery-base.png": "b4c7610d060a",
+    "avatar05-gallery-base.png": "859c300292db",
+    "avatar06-gallery-base.png": "640ee73a9270",
+    "ice-gallery-base.png": "8c6e665abbef",
+    "lion-gallery-base.png": "9801c1786fce",
+    "limitations-back.png": "63a0cbf5b967"
+  },
+  "source_feature_models": {
+    "Avatar01": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+    "Avatar02": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+    "Avatar03": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+    "Avatar04": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+    "Avatar05": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+    "Avatar06": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+    "ice": "model/weights/dinov3-vitb16-pretrain-lvd1689m",
+    "lion": "model/weights/dinov3-vitb16-pretrain-lvd1689m"
+  },
+  "outline_slides": {
+    "pages": [
+      11,
+      12
+    ],
+    "metrics_source": "out/Avatar03/shader_opt/stage_04_outline_optimization/stats/step2/metrics.json",
+    "metrics_sha256": "3d851929094b5da31fe16525ed131254989d13373d06b1ce14efb5304c26174f",
+    "outline_color_l1": {
+      "baseline": 0.10506457835435867,
+      "result": 0.03810827061533928
+    },
+    "matched_pixels": 21002,
+    "mean_distance_px": 1.0351893901824951,
+    "files": {
+      "avatar03-outline-before.png": "out/Avatar03/shader_opt/stage_02_base_shading_optimization/result_transparent.png",
+      "avatar03-outline-step1.png": "out/Avatar03/shader_opt/stage_04_outline_optimization/stats/step1/result_transparent.png",
+      "avatar03-outline-step2.png": "out/Avatar03/shader_opt/stage_04_outline_optimization/result_transparent.png",
+      "avatar03-outline-reference.png": "out/Avatar03/reference_preprocess/reference_rgba.png",
+      "avatar03-outline-match.png": "out/Avatar03/shader_opt/stage_04_outline_optimization/stats/step2/outline_match_overlay.png"
+    }
+  },
+  "exported_at_utc": "2026-10-24T13:29:02.649829+00:00",
+  "source_shader_sha256": "f8e543f8e186fdefed107073d22e6fc8ec781f09002c1bcc0a52ba688ed2cdfc",
+  "preview_crops": {
+    "slide-16": {
+      "source_rect": [
+        360,
+        165,
+        660,
+        375
+      ],
+      "viewer": "uncropped source image"
+    }
+  },
+  "sync_scope": "Avatar03 main assets and all eight gallery models; gallery images use latest native transparent final exports",
+  "derived_images": {
+    "avatar03-turntable-poster.png": {
+      "source": "avatar03-turntable.webm",
+      "source_sha256": "4e15a35262c9922bd7f9e632953238e46df33dd0b5c96ab9b858a4401a160cec",
+      "time_seconds": 0,
+      "export_sha256": "df3d7c73378718562875de5023dc522be0b304882e3ad6d73fa0450533c418fc",
+      "transparent_background": true
+    },
+    "avatar03-light-poster.png": {
+      "source": "avatar03-light-sweep.webm",
+      "source_sha256": "ae8e717ff7ac40e1a3c7f571ee797d2410863818ba796899b8a6ea88b111e838",
+      "time_seconds": 0,
+      "export_sha256": "7062dd1ddf5e1ab40467545dd624aada1bac13b34a22b29b2c3340d5b3c9f023",
+      "transparent_background": true
+    },
+    "limitations-back.png": {
+      "source": "out/Avatar03/shader_opt/videos/model_turntable.webm",
+      "source_sha256": "4e15a35262c9922bd7f9e632953238e46df33dd0b5c96ab9b858a4401a160cec",
+      "time_seconds": 2.5,
+      "export_sha256": "63a0cbf5b967b746e82f56a5e436d8989207ab77721b773441d9b35f8516a2ab",
+      "transparent_background": true,
+      "transparency_strategy": "native_video_alpha"
+    }
+  },
+  "stage_timings": {
+    "source": "out/timing_reports/stage_summary.csv",
+    "source_sha256": "fb9c97e1d77f7914863493a03ec7f7f74809d9e30ed318b2ea865249447ea8fb",
+    "statistic": "Average",
+    "policy": "latest batch with completed samples and no incomplete attempts, per stage",
+    "unit": "seconds",
+    "display_precision": 1,
+    "stages": {
+      "light_optimization": {
+        "run_id": "20261024T164121.112785+0800",
+        "started_at": "2026-10-24T16:41:21+08:00",
+        "sample_count": 2,
+        "average_seconds": 20.333
+      },
+      "shading_band_optimization": {
+        "run_id": "20261024T210758.810118+0800",
+        "started_at": "2026-10-24T21:07:58+08:00",
+        "sample_count": 7,
+        "average_seconds": 9.509
+      },
+      "base_shading_optimization": {
+        "run_id": "20261024T210758.810118+0800",
+        "started_at": "2026-10-24T21:07:58+08:00",
+        "sample_count": 7,
+        "average_seconds": 22.355
+      },
+      "outline_optimization": {
+        "run_id": "20261024T210758.810118+0800",
+        "started_at": "2026-10-24T21:07:58+08:00",
+        "sample_count": 7,
+        "average_seconds": 40.018
+      },
+      "stylized_normal_optimization": {
+        "run_id": "20261024T210758.810118+0800",
+        "started_at": "2026-10-24T21:07:58+08:00",
+        "sample_count": 7,
+        "average_seconds": 22.81
+      },
+      "shadow_control_optimization": {
+        "run_id": "20261024T210758.810118+0800",
+        "started_at": "2026-10-24T21:07:58+08:00",
+        "sample_count": 7,
+        "average_seconds": 21.48
+      },
+      "specular_control_optimization": {
+        "run_id": "20261024T210758.810118+0800",
+        "started_at": "2026-10-24T21:07:58+08:00",
+        "sample_count": 7,
+        "average_seconds": 32.864
+      }
+    }
+  },
+  "video_manifest": {
+    "source": "out/Avatar03/shader_opt/videos/manifest.yaml",
+    "source_sha256": "551f51e22319eaab65e7f772ed184d80e50b5f1acd4c70d02d2cbc5a473031ca",
+    "source_shader_sha256": "f8e543f8e186fdefed107073d22e6fc8ec781f09002c1bcc0a52ba688ed2cdfc",
+    "transparent_background": true
+  },
+  "gallery_comparison": {
+    "models": [
+      {
+        "model": "Avatar01",
+        "after": "assets/avatar01-final.png?v=1df29c0b2d01",
+        "before": "assets/avatar01-gallery-base.png?v=de33e5688bd1"
+      },
+      {
+        "model": "Avatar02",
+        "after": "assets/avatar02-final.png?v=8c4499e424b6",
+        "before": "assets/avatar02-gallery-base.png?v=9dbd92f5d2d0"
+      },
+      {
+        "model": "Avatar03",
+        "after": "assets/avatar03-final.png?v=240a02ae0f4e",
+        "before": "assets/avatar03-gallery-base.png?v=fa257214002f"
+      },
+      {
+        "model": "Avatar04",
+        "after": "assets/avatar04-final.png?v=f3a899de34b9",
+        "before": "assets/avatar04-gallery-base.png?v=b4c7610d060a"
+      },
+      {
+        "model": "Avatar05",
+        "after": "assets/avatar05-final.png?v=fb4cf1204918",
+        "before": "assets/avatar05-gallery-base.png?v=859c300292db"
+      },
+      {
+        "model": "Avatar06",
+        "after": "assets/avatar06-final.png?v=bbb6e88f477b",
+        "before": "assets/avatar06-gallery-base.png?v=640ee73a9270"
+      },
+      {
+        "model": "ice",
+        "after": "assets/ice-final.png?v=7a69bb74f53f",
+        "before": "assets/ice-gallery-base.png?v=8c6e665abbef"
+      },
+      {
+        "model": "lion",
+        "after": "assets/lion-final.png?v=47eab72a4b5e",
+        "before": "assets/lion-gallery-base.png?v=9801c1786fce"
+      }
+    ],
+    "before": "stage_02_base_shading_optimization/basecolor.png",
+    "after": "final_result_transparent.png",
+    "mode": "aligned before/after wipe; both layers clipped independently",
+    "background": "Native transparent final files; BaseColor has no transparent export, so alpha comes from the matching out camera mask. RGB unchanged."
+  },
+  "presentation_background": {
+    "policy": "Use the exact native transparent out file when one exists; otherwise programmatically add alpha from out masks or border-connected background. Preserve all source RGB pixels.",
+    "scope": "entire presentation, inline images, image viewers and comparisons",
+    "native_image_count": 21,
+    "fallback_image_count": 22,
+    "diagnostic_montage_count": 1
+  },
+  "reference_display": {
+    "source": "out/Avatar03/reference_preprocess/reference_rgba.png",
+    "source_sha256": "42b4e4231a9f6044dcb7f59a0943259e148bdbbda6d487ea4e249bb6c45abd9a",
+    "pages": [
+      1,
+      4,
+      5,
+      11,
+      13,
+      14,
+      17
+    ],
+    "unmodified_copy": true
+  },
+  "transparency_audit": {
+    "native": [
+      "avatar03-final.png",
+      "avatar03-reference.png",
+      "avatar03-normal.png",
+      "avatar03-bands.png",
+      "avatar03-structure.png",
+      "avatar03-outline.png",
+      "avatar03-normals-result.png",
+      "avatar03-shadow-result.png",
+      "detail-specular-after.png",
+      "avatar01-final.png",
+      "avatar02-final.png",
+      "avatar04-final.png",
+      "avatar05-final.png",
+      "avatar06-final.png",
+      "ice-final.png",
+      "lion-final.png",
+      "avatar03-outline-step1.png",
+      "avatar03-outline-before.png",
+      "avatar03-outline-step2.png",
+      "avatar03-outline-reference.png",
+      "detail-specular-before.png"
+    ],
+    "programmatic_fallback": [
+      "avatar03-base.png",
+      "avatar03-aligned.png",
+      "avatar03-partition.png",
+      "avatar03-light-color.png",
+      "avatar03-light-target.png",
+      "avatar03-light-probe.png",
+      "avatar03-band-before.png",
+      "avatar03-band-after.png",
+      "avatar03-outline-match.png",
+      "avatar03-normal-angle.png",
+      "avatar03-shadow-view.png",
+      "avatar03-highlight-regions.png",
+      "avatar03-highlight-coverage.png",
+      "avatar03-silhouette.png",
+      "avatar01-gallery-base.png",
+      "avatar02-gallery-base.png",
+      "avatar03-gallery-base.png",
+      "avatar04-gallery-base.png",
+      "avatar05-gallery-base.png",
+      "avatar06-gallery-base.png",
+      "ice-gallery-base.png",
+      "lion-gallery-base.png"
+    ],
+    "diagnostic_montage": [
+      "avatar03-candidates.png"
+    ]
+  }
+}

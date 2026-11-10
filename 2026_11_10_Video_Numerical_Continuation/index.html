@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="论文组会分享：Video Numerical Continuation for Differentiable Inverse Rendering。15 分钟论文报告，重点讲解方法、代表性实验与局限。">
+  <meta name="color-scheme" content="light">
+  <title>Video Numerical Continuation · 论文组会 · 2026.11.10</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23237b75'/%3E%3Cpath d='M11 29V17m9 12V10m9 19V14' stroke='%23fafaf6' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../shared/presentation.css">
+  <link rel="stylesheet" href="deck.css">
+  <script src="../shared/presentation.js" defer></script>
+  <script src="deck.js" defer></script>
+</head>
+<body>
+  <div class="presentation-shell">
+    <header class="app-bar">
+      <div class="app-brand"><a class="app-back-link" href="../index.html" aria-label="返回网站首页目录"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6M8 12h12"/></svg><span>返回目录</span></a><span class="brand-glyph" aria-hidden="true"><i></i><i></i><i></i></span><span class="app-name">LAB MEETING</span><span class="app-subtitle">Paper reading / Differentiable rendering</span></div>
+      <div class="app-actions">
+        <button type="button" class="text-button" data-open-outline title="章节目录 (M)">章节目录 <kbd>M</kbd></button><span class="app-date">2026.11.10</span>
+        <button type="button" class="icon-button" data-help title="快捷键 (?)" aria-label="查看快捷键"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9a2.5 2.5 0 0 1 5 .3c0 1.8-2.5 2-2.5 3.7m0 2v1"/></svg></button>
+        <button type="button" class="icon-button" data-fullscreen aria-pressed="false" title="全屏展示 (F)" aria-label="切换全屏展示"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></svg></button>
+      </div>
+    </header>
+    <main class="stage-viewport" aria-label="论文演示稿">
+      <div class="stage-frame">
+        <div class="deck" data-deck>
+
+          <section class="slide cover" data-title="论文与核心问题" data-chapter="01 / Motivation">
+            <header class="slide-header"><span class="eyebrow">Research discussion / 2026.11.10</span><span class="slide-header-right"><span class="tiny-rule"></span><span>DIFFERENTIABLE INVERSE RENDERING</span></span></header>
+            <div class="cover-main">
+              <div>
+                <div class="paper-category">SIGGRAPH ASIA 2026 · CONFERENCE TRACK</div>
+                <h1 class="paper-title">Video Numerical<br><em>Continuation</em><br>for Differentiable<br>Inverse Rendering</h1>
+                <p class="cover-subtitle">用视频生成先验引导逆渲染优化</p>
+                <p class="cover-authors">Haolin Lu · Ishit Mehta · Haodong Li<br>Yu Fu · Tzu-Mao Li · Ravi Ramamoorthi</p>
+                <p class="cover-affiliation">University of California San Diego</p>
+              </div>
+              <figure class="cover-figure">
+                <svg viewBox="0 0 620 490" role="img" aria-labelledby="cover-figure-title cover-figure-desc">
+                  <title id="cover-figure-title">从初始解到目标解的优化路径示意</title>
+                  <desc id="cover-figure-desc">等高线代表示意性损失地形。直接优化停在局部区域；视频引导的中间目标形成另一条通往目标的路径。</desc>
+                  <defs>
+                    <pattern id="cover-grid" width="31" height="31" patternUnits="userSpaceOnUse"><path d="M31 0H0V31" fill="none" stroke="#dfe5dd" stroke-width=".7"/></pattern>
+                    <marker id="cover-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10" fill="none" stroke="#237b75" stroke-width="1.5"/></marker>
+                  </defs>
+                  <rect x="16" y="25" width="588" height="424" fill="url(#cover-grid)"/>
+                  <g fill="none" stroke="#b4c6b5" stroke-width="1.2">
+                    <path d="M30 300C-15 205 80 74 221 78S361 48 464 91 612 174 588 289 473 420 343 406 80 419 30 300Z"/>
+                    <path d="M68 296C28 204 96 108 221 112S361 81 456 123 570 195 548 284 449 383 337 370 105 384 68 296Z"/>
+                    <path d="M107 290C73 211 118 141 224 146S355 117 443 156 530 214 510 279 428 350 333 334 139 350 107 290Z"/>
+                    <path d="M146 283C119 220 147 173 229 180S345 151 426 189 489 231 470 275 408 314 332 301 170 317 146 283Z"/>
+                    <path d="M177 264C161 223 191 200 233 209S281 254 252 279 192 292 177 264Z"/>
+                    <path d="M195 252C186 231 201 221 219 225S243 249 229 260 203 270 195 252Z"/>
+                    <path d="M340 245C329 204 376 185 412 213S447 267 411 281 348 273 340 245Z"/>
+                    <path d="M362 243C356 220 381 213 398 228S420 255 399 262 367 257 362 243Z"/>
+                  </g>
+                  <g class="svg-text" font-size="13" fill="#647078"><text x="35" y="18">OPTIMIZATION LANDSCAPE</text><text x="426" y="481" font-size="11">schematic illustration</text></g>
+                  <path d="M133 350C155 330 201 299 214 256" stroke="#bd714d" stroke-width="2.5" stroke-dasharray="6 6" fill="none"/>
+                  <path d="M133 350C129 297 120 225 171 175S298 122 353 153 414 194 390 244" stroke="#237b75" stroke-width="3.5" fill="none" marker-end="url(#cover-arrow)"/>
+                  <g fill="#fafaf6" stroke="#237b75" stroke-width="2"><circle cx="143" cy="220" r="6"/><circle cx="248" cy="142" r="6"/><circle cx="351" cy="152" r="6"/></g>
+                  <circle cx="133" cy="350" r="7" fill="#182c3c" stroke="#fafaf6" stroke-width="3"/>
+                  <circle cx="215" cy="251" r="6" fill="#bd714d"/><path d="M207 243L223 259M223 243L207 259" stroke="#bd714d" stroke-width="1.3"/>
+                  <circle cx="391" cy="246" r="14" fill="#237b7516"/><circle cx="391" cy="246" r="6" fill="#237b75"/>
+                  <g class="svg-text" font-size="15"><text x="83" y="382" fill="#182c3c">初始解</text><text x="225" y="252" fill="#bd714d">局部停滞</text><text x="417" y="251" fill="#237b75">目标解</text><text x="214" y="109" fill="#237b75">视频引导的中间目标</text></g>
+                  <g transform="translate(33 425)" class="svg-text" font-size="12"><path d="M0 0h25" stroke="#bd714d" stroke-width="2" stroke-dasharray="4 4"/><text x="35" y="4" fill="#647078">直接优化</text><path d="M156 0h25" stroke="#237b75" stroke-width="2"/><text x="191" y="4" fill="#647078">Video continuation</text></g>
+                </svg>
+              </figure>
+            </div>
+            <div class="cover-question"><div class="question-index">THE QUESTION<br>核心问题</div><p>有了正确的梯度，为什么仍然<span class="question-emphasis">优化不到正确的解</span>？</p></div>
+            <footer class="slide-footer"><span>Lu et al. · <a href="https://ishit.github.io/vnc/index.html" target="_blank" rel="noopener noreferrer">Video Numerical Continuation, 2026</a></span><span class="footer-page"><span class="footer-short">LAB MEETING / PAPER READING</span><strong>01</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide" data-title="可微为什么仍会优化失败" data-chapter="01 / Motivation" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">01 / Motivation</span><span class="slide-header-right"><span class="tiny-rule"></span><span>THE OPTIMIZATION BOTTLENECK</span></span></header>
+            <h2 class="slide-title">可微，为什么仍然会优化失败？</h2>
+            <p class="slide-subtitle">梯度描述当前位置的局部变化；找到目标解，还取决于整个损失地形。</p>
+            <div class="problem-layout">
+              <div class="argument-column">
+                <div class="argument-number">EXAMPLE / 单轴旋转</div>
+                <h3>只调整房子的朝向，<br>也可能陷入局部最优。</h3>
+                <p>房子的初始朝向与目标朝向具有部分视觉相似性。走向正确朝向，可能需要先经过误差更大的区域。</p>
+                <div class="argument-divider"></div>
+                <div class="derivative-equation">θ ← θ − η <span class="accent">∂L / ∂θ</span></div>
+                <p class="equation-caption">nvdiffrast 提供渲染梯度，优化器沿局部下降方向更新 θ。</p>
+              </div>
+              <div class="plot-panel">
+                <div class="plot-heading"><span>LOSS LANDSCAPE</span><div class="mode-switch" role="group" aria-label="切换优化方式"><button type="button" data-plot-mode="direct" aria-pressed="true">直接优化</button><button type="button" data-plot-mode="guided" aria-pressed="false">视频引导</button></div></div>
+                <svg class="landscape-plot" viewBox="0 0 790 350" role="img" aria-labelledby="loss-figure-title loss-figure-desc">
+                  <title id="loss-figure-title">局部最小值与逐步变化的目标</title><desc id="loss-figure-desc">示意曲线存在局部最小值和更低的目标最小值。直接梯度下降停在局部最小值；切换视频引导可以查看一系列移动的示意目标函数。</desc>
+                  <defs><marker id="plot-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10" fill="none" stroke="#bd714d" stroke-width="1.8"/></marker></defs>
+                  <g stroke="#d6dfd3" stroke-width="1"><path d="M55 72H750M55 142H750M55 212H750" stroke-dasharray="3 6"/><path d="M55 35V285H750" fill="none" stroke="#a5b3a6"/></g>
+                  <g class="svg-text" fill="#647078" font-size="13"><text x="11" y="36">L(θ)</text><text x="714" y="322">朝向 θ</text><text x="172" y="311">局部最优</text><text x="588" y="311">目标解</text></g>
+                  <path d="M70 85C115 114 150 230 212 224S282 103 362 102 479 272 614 267 713 210 744 182" stroke="#233e4b" stroke-width="3" fill="none"/>
+                  <path d="M212 224V285M614 267V285" stroke="#aab8ab" stroke-dasharray="4 5" fill="none"/>
+                  <circle cx="614" cy="267" r="7" fill="#237b75" stroke="#f0f3ee" stroke-width="3"/>
+                  <g data-plot-layer="direct">
+                    <path d="M116 127C137 162 159 197 194 216" stroke="#bd714d" stroke-width="2.5" fill="none" marker-end="url(#plot-arrow)"/>
+                    <circle cx="116" cy="127" r="6" fill="#182c3c"/><circle cx="212" cy="224" r="7" fill="#bd714d"/>
+                    <g class="svg-text" font-size="14"><text x="82" y="109" fill="#182c3c">初始状态</text><text x="228" y="248" fill="#bd714d">梯度下降停在这里</text><text x="348" y="75" fill="#647078">损失势垒</text></g>
+                  </g>
+                  <g data-plot-layer="guided" hidden>
+                    <path d="M83 71Q212 375 341 71" stroke="#8faf9e" stroke-width="1.7" fill="none" opacity=".7"/>
+                    <path d="M228 78Q357 387 486 78" stroke="#73a38c" stroke-width="1.7" fill="none" opacity=".7"/>
+                    <path d="M372 92Q501 409 630 92" stroke="#4c957b" stroke-width="1.7" fill="none" opacity=".8"/>
+                    <path d="M485 105Q614 429 743 105" stroke="#237b75" stroke-width="1.8" fill="none"/>
+                    <path d="M212 224L357 233L501 251L614 267" stroke="#237b75" stroke-width="2.4" stroke-dasharray="5 5" fill="none"/>
+                    <g fill="#fafaf6" stroke="#237b75" stroke-width="2"><circle cx="212" cy="224" r="6"/><circle cx="357" cy="233" r="6"/><circle cx="501" cy="251" r="6"/></g>
+                    <g class="svg-text" font-size="14" fill="#237b75"><text x="168" y="55">L₁</text><text x="335" y="63">L₂</text><text x="479" y="78">L₃</text><text x="630" y="94">L<tspan baseline-shift="sub" font-size="10">target</tspan></text><text x="248" y="177">跟随逐步变化的中间目标</text></g>
+                  </g>
+                </svg>
+                <p class="plot-caption" data-plot-caption aria-live="polite"><strong>直接优化：</strong>始终匹配最终目标图，当前梯度可能把参数带到错误的局部最小值。</p>
+              </div>
+            </div>
+            <div class="takeaway-strip"><span class="takeaway-label">KEY INSIGHT</span><p>可微渲染解决“如何求梯度”；本文关注“如何让优化沿着更好的路径前进”。</p></div>
+            <footer class="slide-footer"><span>局部最优与目标演化 · <a href="https://ishit.github.io/vnc/index.html" target="_blank" rel="noopener noreferrer">Source</a></span><span class="footer-page"><span class="footer-short">MOTIVATION</span><strong>02</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide" data-title="用视频构造逐步变化的优化目标" data-chapter="02 / Method" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">02 / Core idea</span><span class="slide-header-right"><span class="tiny-rule"></span><span>VIDEO NUMERICAL CONTINUATION</span></span></header>
+            <h2 class="slide-title">先生成一条图像路径，再沿途优化三维参数。</h2>
+            <p class="slide-subtitle">用初始渲染与目标图像生成过渡视频，将中间帧依次作为优化目标。</p>
+            <div class="method-layout">
+              <div class="method-workspace">
+                <figure class="paper-sequence">
+                  <a class="sequence-crop" href="assets/figure-2-rotation.png" data-figure-open aria-label="放大查看论文中的完整房子旋转实验图" target="_blank" rel="noopener">
+                    <img src="assets/figure-2-rotation.png" width="2172" height="606" alt="论文 Fig.2 中生成视频的 Frame 1 至 Frame 6，房子朝向逐渐转向目标姿态">
+                  </a>
+                  <figcaption><span>Fig. 2 · 视频引导帧</span><a href="assets/figure-2-rotation.png" data-figure-open target="_blank" rel="noopener">查看完整原图 ↗</a></figcaption>
+                </figure>
+                <div class="optimization-loop">
+                  <div class="loop-heading"><span class="eyebrow">For each stage k</span><span>逐阶段求解三维参数 θ</span></div>
+                  <div class="loop-flow"><div class="loop-item"><b class="serif">θ</b><small>当前场景参数</small></div><span class="loop-arrow">→</span><div class="loop-item"><b>可微渲染</b><small>例如 nvdiffrast</small></div><span class="loop-arrow">→</span><div class="loop-item"><b class="serif">I(θ)</b><small>当前渲染结果</small></div><span class="loop-arrow">→</span><div class="loop-item"><b class="serif">L<span class="math-sub">k</span></b><small>与第 k 帧比较</small></div></div>
+                  <div class="loop-back">反向传播 ∂Lₖ / ∂θ，更新参数，再进入下一阶段</div>
+                </div>
+              </div>
+              <aside class="method-sidebar">
+                <div class="eyebrow">What changes?</div><h3>改变的是<br><span class="accent">优化目标的演化方式</span></h3>
+                <div class="objective-block"><div class="objective-label">直接匹配最终图像</div><div class="formula">L(θ) = ‖I(θ) − I*‖²</div></div>
+                <div class="objective-block is-ours"><div class="objective-label">逐阶段匹配引导帧</div><div class="formula">L<span class="math-sub">k</span>(θ) = ‖I(θ) − I<span class="math-sub">k</span>‖²</div></div>
+                <p>中间目标逐渐变化，尝试让当前解沿着一条可跟随的路径走向最终目标。</p>
+                <p class="static-note">θ 可以是位姿、几何、材质或光照参数；具体随实验而定。</p>
+              </aside>
+            </div>
+            <div class="takeaway-strip method-takeaway"><span class="takeaway-label">DISCUSSION</span><p>生成的中间帧未必严格符合三维物理，为什么仍可能提供有效的优化引导？</p></div>
+            <footer class="slide-footer"><span>Fig. 2 · 房子旋转优化 · <a href="https://ishit.github.io/vnc/index.html" target="_blank" rel="noopener noreferrer">项目页</a> / <a href="https://github.com/SuikaSibyl/vnc" target="_blank" rel="noopener noreferrer">作者代码</a></span><span class="footer-page"><span class="footer-short">CORE IDEA</span><strong>03</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="可微渲染在哪里？优化的到底是什么？" data-chapter="02 / Method" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">02 / Method</span><span class="slide-header-right"><span class="tiny-rule"></span><span>DIFFERENTIABLE OPTIMIZATION</span></span></header>
+            <h2 class="slide-title">可微渲染在哪里？优化的到底是什么？</h2><p class="slide-subtitle">视频提供图像目标；可微渲染器把误差反传到场景参数 θ。</p>
+            <div class="content"><div class="gradient-chain"><div><span class="step-label">LEARNABLE</span><b>场景参数 θ</b><small>位姿 / 几何 / 材质 / 光照</small></div><span>→</span><div><span class="step-label">RENDER</span><b>I(θ) = R(θ)</b><small>Nvdiffrast / Mitsuba 3</small></div><span>→</span><div><span class="step-label">REFERENCE</span><b>L(I(θ), Fₖ)</b><small>匹配当前视频参考帧</small></div></div><div class="gradient-return">∂L/∂θ = (∂L/∂I) · (∂I/∂θ)　 →　 Adam / Large Steps 更新 θ</div><table class="academic-table "><thead><tr><th>场景参数</th><th>具体优化量</th><th>论文中的代表案例</th></tr></thead><tbody><tr><td>位姿</td><td>旋转、平移、关节旋转</td><td>House / Earth / Skeleton</td></tr><tr><td>几何</td><td>网格顶点、曲线形状</td><td>Bob / Dragon / Suzanne</td></tr><tr><td>材质与光照</td><td>粗糙度 α 贴图、点光源位置</td><td>Teapot / GlossyFloor / Shadow</td></tr></tbody></table></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>视频生成器提前运行；优化的仍是三维场景参数，而不是生成模型的权重。</p></div>
+            <footer class="slide-footer"><span>§3–4 · Supplement Tables 1–2</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>04</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="方法：把一个难目标，变成一串邻近目标" data-chapter="02 / Method" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">02 / Method</span><span class="slide-header-right"><span class="tiny-rule"></span><span>NUMERICAL CONTINUATION</span></span></header>
+            <h2 class="slide-title">方法：把一个难目标，变成一串邻近目标</h2><p class="slide-subtitle">Numerical continuation：逐步改变问题，并用当前解继续求解下一阶段。</p>
+            <div class="content split algorithm-layout"><div><div class="equation-box"><b>L<sub>VNC</sub>(θ, λ) = L(I(θ), I★(λ))</b><p>I★(0)=Iinit；中间匹配视频帧；I★(1)=Iref</p></div><div class="schedule-card"><div class="schedule-heading"><b>λ(t) = min(t / (γT), 1)</b><output data-schedule-value>迭代 120 / 300</output></div><svg viewBox="0 0 800 180" class="schedule-svg" aria-label="优化前 γ 阶段 λ 线性增长，此后固定为 1"><path d="M60 25V140H755" fill="none" stroke="#9baaa2"/><path d="M60 140L655 35H755" fill="none" stroke="#237b75" stroke-width="4"/><path d="M655 35V140" stroke="#b8c6bb" stroke-dasharray="5 5"/><g font-size="16" fill="#647078"><text x="24" y="33">λ</text><text x="45" y="163">0</text><text x="627" y="165">γT</text><text x="745" y="165">T</text><text x="153" y="55">视频引导</text><text x="668" y="20">目标精修</text></g><circle data-schedule-dot cx="324" cy="93" r="8" fill="#bd714d"/></svg><input data-schedule type="range" min="0" max="300" value="120" aria-label="调整优化迭代"><p data-schedule-caption>λ = 0.44 · 匹配视频中间帧</p></div></div><aside class="reading-panel"><div class="reading-point"><h3>① 生成参考路径</h3><p>G(Iinit, Iref, Tprompt) → {F₀, …, Fₙ}；主实验使用 Kling 3.0 Omni。</p></div><div class="reading-point"><h3>② 逐步跟随</h3><p>前 γT 次迭代均匀推进视频帧，每步渲染、算损失、反传。</p></div><div class="reading-point"><h3>③ 最终目标精修</h3><p>剩余迭代固定真实参考图，减弱中间帧误差的影响。</p></div><button type="button" class="text-button" data-open-demo="house">看作者 House 视频对比 ↗</button></aside></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>好的中间帧让极小值逐步移动；每阶段只需跟随，不必重新进行大范围搜索。</p></div>
+            <footer class="slide-footer"><span>§3 · Eqs. (3)–(6) · Supplement Listing 1</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>05</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide baseline-intro" data-title="两种已有方法：PRDPT 与 RGBXY" data-chapter="02 / Method" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">02 / Method</span><span class="slide-header-right"><span class="tiny-rule"></span><span>RELATED METHODS</span></span></header>
+            <h2 class="slide-title">两种已有方法：PRDPT 与 RGBXY</h2>
+            <p class="slide-subtitle">PRDPT 汇总参数邻域的信息；RGBXY 同时利用颜色与投影位置建立匹配。</p>
+            <div class="content baseline-columns">
+              <article class="baseline-card">
+                <header><h3>PRDPT</h3><span>参数空间平滑 · CVPR 2023</span></header>
+                <svg class="baseline-schematic" viewBox="0 0 610 110" role="img" aria-label="以当前参数 θ 为中心，对周围多个扰动参数进行采样"><path d="M35 68H575" stroke="#a7b5aa"/><path d="M82 63C163 63 205 20 305 20S447 63 528 63" fill="none" stroke="#91b6a6" stroke-width="2" stroke-dasharray="5 5"/><g fill="#237b75"><circle cx="113" cy="68" r="5" opacity=".35"/><circle cx="202" cy="68" r="6" opacity=".65"/><circle cx="268" cy="68" r="6" opacity=".85"/><circle cx="346" cy="68" r="6" opacity=".85"/><circle cx="420" cy="68" r="6" opacity=".65"/><circle cx="499" cy="68" r="5" opacity=".35"/></g><path d="M305 56V80" stroke="#182c3c" stroke-width="2"/><g fill="#647078" font-size="17"><text x="59" y="100">θ + ε₁</text><text x="299" y="100" fill="#182c3c">θ</text><text x="480" y="100">θ + εₙ</text></g></svg>
+                <div class="baseline-core">邻域采样 → 估计平滑后的更新方向</div>
+                <p>在当前 θ 附近扰动参数，汇总邻域信息，缓解零梯度平台；参考图固定。</p>
+                <div class="baseline-focus"><b>σ 大 → σ 小</b><span>先看更宽的邻域，再逐渐恢复细节。<br>所以损失截面会随着 σ 改变。</span></div>
+                <small>需要权衡平滑尺度、样本数量与计算成本。</small>
+              </article>
+              <article class="baseline-card">
+                <header><h3>RGBXY</h3><span>颜色 + 屏幕位置 · SIGGRAPH Asia 2022</span></header>
+                <svg class="baseline-schematic" viewBox="0 0 610 110" role="img" aria-label="根据颜色与位置，在渲染图和目标图的点之间建立匹配"><rect x="50" y="8" width="200" height="70" fill="#eaf0e9" stroke="#cad7cc"/><rect x="360" y="8" width="200" height="70" fill="#eaf0e9" stroke="#cad7cc"/><g fill="none" stroke-width="1.6" opacity=".65"><path d="M109 28L458 34" stroke="#bd714d"/><path d="M150 60L496 56" stroke="#237b75"/><path d="M205 35L410 63" stroke="#5b8193"/></g><g fill="#bd714d"><circle cx="109" cy="28" r="6"/><circle cx="458" cy="34" r="6"/></g><g fill="#237b75"><circle cx="150" cy="60" r="6"/><circle cx="496" cy="56" r="6"/></g><g fill="#5b8193"><circle cx="205" cy="35" r="6"/><circle cx="410" cy="63" r="6"/></g><g fill="#647078" font-size="17"><text x="117" y="103">渲染图</text><text x="425" y="103">目标图</text></g></svg>
+                <div class="baseline-core baseline-formula">zᵢ(θ) = [Rᵢ, Gᵢ, Bᵢ, xᵢ, yᵢ]</div>
+                <p>计算表面点 RGBXY 对 θ 的导数，用最优传输匹配两图。</p>
+                <div class="baseline-focus"><b>颜色相似，也要知道往哪里移动</b><span>让相隔较远、没有重叠的区域，也能提供位置更新信号。</span></div>
+                <small>长程平移有效；大旋转、对称或遮挡仍可能导致错误对应。</small>
+              </article>
+            </div>
+            <div class="takeaway-strip"><span class="takeaway-label">CONNECTION</span><p>PRDPT 改善邻域梯度，RGBXY 改善匹配；VNC 改变参考图像的演化，可与两者组合。</p></div>
+            <footer class="slide-footer"><span><a href="https://mfischer-ucl.github.io/prdpt/" target="_blank" rel="noopener">Fischer &amp; Ritschel, 2023</a> · <a href="https://jkxing.github.io/academic/publication/DROT" target="_blank" rel="noopener">Xing et al., 2022</a> · VNC §2–3</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>06</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="位姿实验：平移与大角度旋转，难点并不相同" data-chapter="03 / Experiments" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">03 / Experiments</span><span class="slide-header-right"><span class="tiny-rule"></span><span>POSE ESTIMATION</span></span></header>
+            <h2 class="slide-title">位姿实验：平移与大角度旋转，难点并不相同</h2><p class="slide-subtitle">PenguinGirl 缺少重叠；SandCastle 近似对称，存在多个错误朝向。</p>
+            <div class="content figure-with-metrics"><figure class="paper-figure "><a href="assets/figure-03-translation-rotation.png" data-figure-open data-figure-title="Fig. 3 · 一维位姿优化" target="_blank" rel="noopener"><img src="assets/figure-03-translation-rotation.png" alt="Fig. 3 · 一维位姿优化" loading="eager"></a><figcaption><span>Fig. 3 · 一维位姿优化 · 作者结果与误差曲线</span><span>点击放大 ↗</span></figcaption></figure><div class="metric-row"><div><span>PenguinGirl · 平移 MAE</span><b>MSE 1.345 <i>→</i> VNC 0.002</b><small>RGBXY 也能成功：0.000</small></div><div><span>SandCastle · 旋转误差</span><b>MSE 179.9° <i>→</i> VNC 0.26°</b><small>RGBXY 171.8°；PRDPT (σ=70) 15.5°</small></div></div></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>VNC 的长处是提供可跟随的大范围运动；简单平移也可能由良好的对应关系解决。</p></div>
+            <footer class="slide-footer"><span>§4.1 · Fig. 3 · 一维平移与旋转</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>07</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="直接看损失地形：VNC 在“移动目标的谷底”前进" data-chapter="03 / Experiments" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">03 / Experiments</span><span class="slide-header-right"><span class="tiny-rule"></span><span>POSE · LOSS LANDSCAPES</span></span></header>
+            <h2 class="slide-title">直接看损失地形：VNC 在“移动目标的谷底”前进</h2><p class="slide-subtitle">左组：PenguinGirl 平移；右组：SandCastle 旋转。对应前一页的两个位姿实验。</p>
+            <div class="content split landscape-context"><figure class="paper-figure "><div class="landscape-case-labels"><span><b>PenguinGirl</b> · 横向平移</span><span><b>SandCastle</b> · 绕 Y 轴旋转</span></div><a href="assets/figure-05-continuation.png" data-figure-open data-figure-title="Fig. 5 · 目标函数的演化" target="_blank" rel="noopener"><img src="assets/figure-05-continuation.png" alt="Fig. 5 · 目标函数的演化" loading="eager"></a><figcaption><span>横向：参数取值 · 明暗：损失高低 · 下方：选定阶段的损失曲线</span><span>点击放大 ↗</span></figcaption></figure><aside class="reading-panel"><div class="reading-point"><h3>MSE：地形固定</h3><p>两种任务都直接匹配最终图，每行截面相同。横向是参数，黑色表示低损失。</p></div><div class="reading-point"><h3>PRDPT：改变平滑尺度</h3><p>目标图固定，但从上到下 σ 逐渐减小，所以各行损失不同。固定 σ 时，理论截面应相同。</p></div><div class="reading-point"><h3>VNC：低损失通道移动</h3><p>从上到下 λ 由 0 增至 1，参考帧改变，低损失通道移动。绿线是参数跟随的轨迹。</p></div></aside></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>MSE 的目标与损失固定；PRDPT 改变平滑尺度 σ；VNC 改变参考帧。</p></div>
+            <footer class="slide-footer"><span>§3 · Fig. 5</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>08</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide pose-extended" data-title="位姿扩展：6D、多物体、真实照片与全局光照" data-chapter="03 / Experiments" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">03 / Experiments</span><span class="slide-header-right"><span class="tiny-rule"></span><span>POSE · BEYOND ONE PARAMETER</span></span></header>
+            <h2 class="slide-title">位姿扩展：6D、多物体、真实照片与全局光照</h2>
+            <p class="slide-subtitle">从一个平移或旋转参数，扩展到复杂的位姿变量与观察条件。</p>
+            <div class="content pose-case-grid">
+              <article class="pose-case">
+                <header><h3>6D / 多物体</h3><p>Earth / Furniture</p></header>
+                <figure class="paper-figure"><a href="assets/figure-06-rigid.png" data-figure-open data-figure-title="Fig. 6 · 联合位姿与多物体摆放" target="_blank" rel="noopener"><img src="assets/figure-06-rigid.png" alt="Fig. 6 · 联合位姿与多物体摆放"></a><figcaption><span>Fig. 6 · 联合位姿与多物体摆放</span><span>点击放大 ↗</span></figcaption></figure>
+                <p class="pose-description">Earth 联合旋转与平移；Furniture 同时调整多个物体的位置与朝向。</p>
+                <div class="pose-results"><span>图像 MSE · 固定目标 → VNC</span><b>Earth：0.0245 → 0.0008</b><b>Furniture：0.0181 → 0.0027</b></div>
+              </article>
+              <article class="pose-case">
+                <header><h3>真实照片</h3><p>StanfordORB · Gnome</p></header>
+                <figure class="paper-figure"><a href="assets/figure-07-real-gnome.png" data-figure-open data-figure-title="Fig. 7 · 真实照片的 6D 位姿" target="_blank" rel="noopener"><img src="assets/figure-07-real-gnome.png" alt="Fig. 7 · 真实照片的 6D 位姿"></a><figcaption><span>Fig. 7 · 真实照片的 6D 位姿</span><span>点击放大 ↗</span></figcaption></figure>
+                <p class="pose-description">使用 NvdiffrecMC，以 RGB 与轮廓共同监督，匹配真实照片中的目标姿态。</p>
+                <div class="pose-results"><span>RGB MSE · 固定目标 → VNC</span><b>0.0019 → 0.0008</b><small>轮廓 MSE：0.0188 → 0.0100</small></div>
+              </article>
+              <article class="pose-case">
+                <header><h3>全局光照</h3><p>Reflection · Bunny</p></header>
+                <figure class="paper-figure"><a href="assets/figure-08-reflection.png" data-figure-open data-figure-title="Fig. 8 · 从反射恢复位姿" target="_blank" rel="noopener"><img src="assets/figure-08-reflection.png" alt="Fig. 8 · 从反射恢复位姿"></a><figcaption><span>Fig. 8 · 从反射恢复位姿</span><span>点击放大 ↗</span></figcaption></figure>
+                <p class="pose-description">只观察光滑表面中的反射，用 Mitsuba 恢复 Bunny 的 yaw 与 xy 位置。</p>
+                <div class="pose-results"><span>图像 MSE · 固定目标 → VNC</span><b>0.0025 → 0.0001</b><small>可微路径追踪 + projective sampling</small></div>
+              </article>
+            </div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>视频引导可从单参数优化，扩展到多物体、真实图像与间接观察下的位姿恢复。</p></div>
+            <footer class="slide-footer"><span>§4.1 · Figs. 6–8</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>09</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="材质与光照：像素变化不一定对应简单的参数变化" data-chapter="03 / Experiments" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">03 / Experiments</span><span class="slide-header-right"><span class="tiny-rule"></span><span>MATERIAL & LIGHTING</span></span></header>
+            <h2 class="slide-title">材质与光照：像素变化不一定对应简单的参数变化</h2><p class="slide-subtitle">粗糙度影响反射分布；移动灯光会让高光或阴影跨过不重叠区域。</p>
+            <div class="content material-layout roughness-detail"><div><figure class="paper-figure "><a href="assets/figure-09-roughness.png" data-figure-open data-figure-title="Fig. 9 · 64 × 64 粗糙度贴图" target="_blank" rel="noopener"><img src="assets/figure-09-roughness.png" alt="Fig. 9 · 64 × 64 粗糙度贴图" loading="eager"></a><figcaption><span>Fig. 9 · 64 × 64 粗糙度贴图</span><span>点击放大 ↗</span></figcaption></figure><div class="roughness-reading">
+                  <p class="roughness-key">三个点标记 3 个 5 × 5 观察区域，与下方同色曲线一一对应。</p>
+                  <dl class="roughness-legend">
+                    <div><dt><i class="sample-dot sample-red" aria-hidden="true"></i>红色</dt><dd>初始到目标区间内亮度单调，MSE 可收敛。</dd></div>
+                    <div><dt><span class="sample-pair" aria-hidden="true"><i class="sample-dot sample-green"></i><i class="sample-dot sample-blue"></i></span>绿 / 蓝</dt><dd>中图左侧有局部极小值，MSE 易陷入并产生亮斑。</dd></div>
+                  </dl>
+                  <p class="roughness-guidance"><b>VNC：</b>允许绿、蓝区域先变亮，再逐渐变暗，帮助越过局部障碍。</p>
+                </div></div><div><figure class="paper-figure "><a href="assets/figure-12-lighting.png" data-figure-open data-figure-title="Fig. 12 · 点光源位置：高光 / 阴影" target="_blank" rel="noopener"><img src="assets/figure-12-lighting.png" alt="Fig. 12 · 点光源位置：高光 / 阴影" loading="eager"></a><figcaption><span>Fig. 12 · 点光源位置：高光 / 阴影</span><span>点击放大 ↗</span></figcaption></figure><div class="mini-results"><h3>从图像运动恢复光源位置</h3><p>GlossyFloor：MSE 1.62×10⁻³ → <b>1.91×10⁻⁶</b><br>BunnyShadow：VNC 与 LOIR 都能成功。</p><p class="loir-note"><a href="https://ishit.github.io/loir/" target="_blank" rel="noopener"><b>LOIR（CVPR 2025）</b></a>：比较局部亮度直方图，并结合多尺度匹配，缓解位置错开时的梯度稀疏。</p></div></div></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>参考目标可以先远离最终图像的局部外观，帮助参数越过非单调着色的障碍。</p></div>
+            <footer class="slide-footer"><span>§4.2 · Figs. 9, 12 · Supplement Table 5</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>10</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="几何恢复：视频先给出易跟随的结构演化" data-chapter="03 / Experiments" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">03 / Experiments</span><span class="slide-header-right"><span class="tiny-rule"></span><span>GEOMETRY RECOVERY</span></span></header>
+            <h2 class="slide-title">几何恢复：视频先给出易跟随的结构演化</h2><p class="slide-subtitle">Bob 从粗网格逐渐形成孔洞；固定目标容易用错误的表面折叠去拟合阴影。</p>
+            <div class="content split "><figure class="paper-figure "><a href="assets/figure-01-bob.png" data-figure-open data-figure-title="Fig. 1 · Bob 几何恢复" target="_blank" rel="noopener"><img src="assets/figure-01-bob.png" alt="Fig. 1 · Bob 几何恢复" loading="eager"></a><figcaption><span>Fig. 1 · Bob 几何恢复 · 相同 9000 次迭代</span><span>点击放大 ↗</span></figcaption></figure><aside class="reading-panel"><div class="reading-point"><h3>路径让结构逐渐形成</h3><p>BobMorph 先伸展、围合，再恢复细节；结合 Large Steps 与重网格化。</p></div><div class="reading-point"><h3>最终 PSNR：25.19 → 36.61</h3><p>优化早期不必立即更像最终图；重要的是进入正确形状的吸引域。</p></div><div class="related-experiments"><span class="step-label">OTHER GEOMETRY RESULTS</span><a href="assets/figure-10-dragon.png" data-figure-open data-figure-title="Fig. 10 · Dragon">Dragon：偏心、无重叠初始化 ↗</a><a href="assets/figure-16-heart.png" data-figure-open data-figure-title="Fig. 16 · Heart">Heart：先 V 形，再围成心形 ↗</a><button type="button" class="text-button" data-open-demo="dragon">看作者 Dragon 视频 ↗</button></div></aside></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>提示词提供形变策略，几何参数化与渲染梯度负责把图像路径落实到三维。</p></div>
+            <footer class="slide-footer"><span>§4.3 · Figs. 1, 10, 16 · Supplement §2.3</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>11</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="更复杂的任务：多视图，以及几何–材质联合优化" data-chapter="03 / Experiments" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">03 / Experiments</span><span class="slide-header-right"><span class="tiny-rule"></span><span>MULTIVIEW & JOINT OPTIMIZATION</span></span></header>
+            <h2 class="slide-title">更复杂的任务：多视图，以及几何–材质联合优化</h2><p class="slide-subtitle">相同首尾帧，不同中间路径，会让优化得到不同的三维解释。</p>
+            <div class="content split "><figure class="paper-figure "><a href="assets/figure-15-joint.png" data-figure-open data-figure-title="Fig. 15 · JointMorph / MatThenMorph" target="_blank" rel="noopener"><img src="assets/figure-15-joint.png" alt="Fig. 15 · JointMorph / MatThenMorph" loading="eager"></a><figcaption><span>Fig. 15 · JointMorph / MatThenMorph · 最后一行：重打光</span><span>点击放大 ↗</span></figcaption></figure><aside class="reading-panel"><div class="reading-point"><h3>先材质、后形变</h3><p>Video B 减弱几何–粗糙度歧义，重打光后几何改善更明显。参数始终联合优化。</p></div><div class="reading-point"><h3>多视图也可扩展</h3><p>Suzanne 三视图联合形状与平移；短视频引导（γ=0.2）后进行目标精修。</p></div><div class="related-experiments"><a href="assets/figure-13-multiview.png" data-figure-open data-figure-title="Fig. 13 · 三视图 Suzanne">三视图 Suzanne ↗</a><a href="assets/figure-14-shadow-art.png" data-figure-open data-figure-title="Fig. 14 · 两幅阴影约束三维曲线">两幅阴影约束曲线 ↗</a><a href="assets/figure-11-inconsistency.png" data-figure-open data-figure-title="Fig. 11 · 作者构造的多视图不一致示意">多视图不一致示意 ↗</a></div></aside></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>路径可以帮助分解歧义，但独立生成的多视图中间帧不保证来自同一三维状态。</p></div>
+            <footer class="slide-footer"><span>§4.3 · Figs. 11, 13–15</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>12</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="方法的边界：视频路径必须与可优化的场景对得上" data-chapter="04 / Discussion" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">04 / Discussion</span><span class="slide-header-right"><span class="tiny-rule"></span><span>ASSUMPTIONS & FAILURE CASES</span></span></header>
+            <h2 class="slide-title">方法的边界：视频路径必须与可优化的场景对得上</h2><p class="slide-subtitle">Earth 的大角度旋转中，模型需要猜出两张输入里都看不到的大洋洲。</p>
+            <div class="content failure-layout"><div class="failure-visual"><figure class="paper-figure "><a href="assets/figure-17-earth-failure.png" data-figure-open data-figure-title="Fig. 17 · 未观察内容导致错误旋转" target="_blank" rel="noopener"><img src="assets/figure-17-earth-failure.png" alt="Fig. 17 · 未观察内容导致错误旋转" loading="eager"></a><figcaption><span>Fig. 17 · 未观察内容导致错误旋转</span><span>点击放大 ↗</span></figcaption></figure><p>生成纹理与真实固定纹理不一致，改变旋转无法同时修复这些误差。</p></div><div class="cards "><article class="concept-card"><span class="card-index">01</span><h3>路径可表达？</h3><p>只优化位姿时，视频不能要求变形或换纹理；独立多视图也可能冲突。</p></article><article class="concept-card"><span class="card-index">02</span><h3>图像准确？</h3><p>幻觉、光照漂移与 LDR / HDR 差异，会产生错误的优化信号。</p></article><article class="concept-card"><span class="card-index">03</span><h3>梯度可跟随？</h3><p>即使路径正确，零梯度平台、梯度不稳定或推进过快仍会失败。</p></article></div></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>视频提供先验，也会引入错误；最终能否成功取决于路径、图像与梯度三者的配合。</p></div>
+            <footer class="slide-footer"><span>§3, §5.1 · Fig. 17</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>13</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="组合方法：VNC + PRDPT / RGBXY" data-chapter="04 / Discussion" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">04 / Discussion</span><span class="slide-header-right"><span class="tiny-rule"></span><span>COMPLEMENTARY METHODS</span></span></header>
+            <h2 class="slide-title">组合方法：VNC + PRDPT / RGBXY</h2><p class="slide-subtitle">视频负责长程路径；已有方法补足局部平台或不稳定匹配。</p>
+            <div class="content dual-figures"><article><figure class="paper-figure "><a href="assets/figure-18-mug.png" data-figure-open data-figure-title="Fig. 18 · Mug：遮挡导致零梯度平台" target="_blank" rel="noopener"><img src="assets/figure-18-mug.png" alt="Fig. 18 · Mug：遮挡导致零梯度平台" loading="eager"></a><figcaption><span>Fig. 18 · Mug：遮挡导致零梯度平台</span><span>点击放大 ↗</span></figcaption></figure><h3>+ PRDPT：在参数邻域中寻找有效信号</h3><p>杯柄未显露时，VNC 也无法获得旋转梯度；采样平滑帮助离开平台。</p></article><article><figure class="paper-figure "><a href="assets/figure-19-skeleton.png" data-figure-open data-figure-title="Fig. 19 · Skeleton：复杂姿态恢复" target="_blank" rel="noopener"><img src="assets/figure-19-skeleton.png" alt="Fig. 19 · Skeleton：复杂姿态恢复" loading="eager"></a><figcaption><span>Fig. 19 · Skeleton：复杂姿态恢复</span><span>点击放大 ↗</span></figcaption></figure><h3>+ RGBXY：稳定邻近姿态的对应关系</h3><p>Jumpkick MSE：VNC 0.0358 → 组合 <b class="accent">0.0069</b><br>组合并非在每个案例、每个指标都最优。</p></article></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>更好的目标序列与更好的局部梯度，是两个可以同时使用的工具。</p></div>
+            <footer class="slide-footer"><span>§5.1 · Figs. 18–19</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>14</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="可靠性与成本：成功率和视频生成时间" data-chapter="04 / Discussion" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">04 / Discussion</span><span class="slide-header-right"><span class="tiny-rule"></span><span>ROBUSTNESS & COST</span></span></header>
+            <h2 class="slide-title">可靠性与成本：成功率和视频生成时间</h2><p class="slide-subtitle">重复生成、提示词变化和模型选择，都会影响结果。</p>
+            <div class="content"><div class="evidence-top"><div class="success-card"><span class="step-label">SANDCASTLE · ANGLE ERROR ≤ 2°</span><b>8 <small>/ 10</small></b><p>同一提示词，重复生成视频<br>MSE：0/10；PRDPT σ=1：3/10</p><a href="assets/table-01-convergence.png" data-figure-open data-figure-title="Table 1 · 重复实验收敛次数">查看完整 Table 1 ↗</a></div><div><figure class="paper-figure "><a href="assets/table-02-models.png" data-figure-open data-figure-title="Table 2 · 不同视频模型的收敛次数" target="_blank" rel="noopener"><img src="assets/table-02-models.png" alt="Table 2 · 不同视频模型的收敛次数" loading="eager"></a><figcaption><span>Table 2 · 不同视频模型的收敛次数</span><span>点击放大 ↗</span></figcaption></figure><div class="small-facts"><span>Earth 提示词变体：<b>9/10</b></span><span>随机灯光初始化：VNC <b>9/10</b>，MSE 3/10</span></div></div></div><div class="cost-band"><div><span class="step-label">GENERATION COST</span><b>135.81 s</b><small>43 次 API 调用的平均时间</small></div><p>House 优化循环：MSE 0.691 s / VNC 1.016 s。<br>生成等待可能主导总成本，应计入 Tvideo + Toptimization。</p></div><div class="inline-sources">补充实验：<a href="assets/supp-figure-02-frame-budget.png" data-figure-open data-figure-title="Supplement Fig. 2 · 视频帧数消融">帧太少会跟不上</a><a href="assets/supp-figure-01-models.png" data-figure-open data-figure-title="Dragon：不同视频模型对比 · Supplement Fig. 1" data-figure-description="每组上排是生成视频帧，下排是三维优化渲染。固定优化设置，仅替换视频模型；数字为与当时参考帧的 MSE。">Dragon：不同视频模型对比</a><a href="assets/supp-table-04-runtime.png" data-figure-open data-figure-title="Supplement Table 4 · 优化循环耗时">耗时原表</a></div></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>评估应同时报告成功率、参数误差和端到端成本；相同视频也可以被多次实验共享。</p></div>
+            <footer class="slide-footer"><span>§5.2 · Tables 1–2 · Supplement §4.1, §4.3</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>15</strong><span>/ 16</span></span></footer>
+          </section>
+
+          <section class="slide full-slide  " data-title="多采样、多初值，与视频引导分别解决什么？" data-chapter="04 / Discussion" hidden>
+            <header class="slide-header"><span class="eyebrow section-marker">04 / Discussion</span><span class="slide-header-right"><span class="tiny-rule"></span><span>SEARCH, PATH & OUR PROJECT</span></span></header>
+            <h2 class="slide-title">多采样、多初值，与视频引导分别解决什么？</h2><p class="slide-subtitle">可以，尤其是低维问题；VNC 的新意是用生成先验构造一条求解路径。</p>
+            <div class="content"><table class="academic-table "><thead><tr><th>策略</th><th>更适合解决什么</th><th>需要付出的代价</th></tr></thead><tbody><tr><td>枚举 / 多初值</td><td>单角度、少量参数的候选搜索</td><td>维度增大后覆盖成本上升</td></tr><tr><td>邻域采样（PRDPT）</td><td>平台与稀疏梯度，改善局部信号</td><td>需要选择扰动尺度与样本数</td></tr><tr><td>视频路径（VNC）</td><td>大幅运动或形变的目标演化</td><td>生成成本、错误路径与图像不一致</td></tr></tbody></table><div class="discussion-question"><span class="step-label">联系 SHADER / 控制贴图项目</span><h3>先在可控参数上验证，再考虑生成路径。</h3><p>固定几何与相机，先优化光源 / 高光 / 阈值等少量参数，再做贴图精修；以相同总时间比较多初值与 VNC。</p></div></div>
+            <div class="takeaway-strip"><span class="takeaway-label">TAKEAWAY</span><p>判断是否值得用，关键是相同预算下是否更稳、更准，而不是单看一次成功的可视化。</p></div>
+            <footer class="slide-footer"><span>基于 §3, §5 的组会讨论 · 联系 ShaderNPR 项目</span><span class="footer-page"><span class="footer-short">VIDEO NUMERICAL CONTINUATION</span><strong>16</strong><span>/ 16</span></span></footer>
+          </section>
+        </div>
+      </div>
+    </main>
+    <nav class="deck-controls" aria-label="幻灯片导航">
+      <div class="controls-hint"><kbd>←</kbd><kbd>→</kbd><span>翻页</span><span>·</span><kbd>F</kbd><span>全屏</span></div>
+      <div class="pager">
+        <button class="icon-button" type="button" data-previous aria-label="上一页" title="上一页 (←)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg></button>
+        <span class="pager-number"><strong data-current-page>01</strong> / <span data-total-pages>16</span></span>
+        <div class="progress-tabs" data-progress-tabs aria-label="选择幻灯片"></div>
+        <button class="icon-button" type="button" data-next aria-label="下一页" title="下一页 (→)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6"/></svg></button>
+      </div>
+      <span class="deck-caption">PAPER READING · 16 SLIDES · 15 MIN</span>
+    </nav>
+  </div>
+  <p class="sr-only" aria-live="polite" data-slide-status></p>
+  <dialog class="help-dialog" data-help-dialog aria-labelledby="help-title"><h2 id="help-title">演示快捷键</h2><dl><dt>上一页 / 下一页</dt><dd>← / →</dd><dt>下一页</dt><dd>空格 / Page Down</dd><dt>首页 / 末页</dt><dd>Home / End</dd><dt>全屏展示</dt><dd>F</dd><dt>退出全屏 / 关闭帮助</dt><dd>Esc</dd><dt>章节目录</dt><dd>M</dd><dt>显示帮助</dt><dd>?</dd></dl><button class="dialog-close" type="button" data-close-help>继续阅读</button></dialog>
+  <dialog class="outline-dialog" data-outline-dialog aria-labelledby="outline-title"><header><div><span class="eyebrow accent">CONTENTS</span><h2 id="outline-title">章节目录</h2></div><button type="button" class="figure-close" data-close-outline>关闭 ×</button></header><div class="outline-grid" data-outline-grid></div></dialog>
+  <dialog class="figure-dialog" data-figure-dialog aria-labelledby="figure-dialog-title">
+    <header><span id="figure-dialog-title">论文原图</span><div class="figure-actions"><span>滚轮缩放 · 拖动查看</span><button type="button" class="figure-close" data-figure-reset>适应窗口</button><a data-original-figure target="_blank" rel="noopener">新窗口 ↗</a><button type="button" class="figure-close" data-close-figure aria-label="关闭论文原图">关闭 ×</button></div></header>
+    <p class="figure-description" data-figure-description hidden></p>
+    <div class="figure-viewport" data-figure-viewport><img src="assets/figure-2-rotation.png" alt="论文原图" draggable="false"></div>
+  </dialog>
+<dialog class="demo-dialog" data-demo-dialog="house" aria-label="作者 House · 旋转优化 视频对比"><header><h2>作者视频 · House · 旋转优化</h2><button class="figure-close" type="button" data-close-demo>关闭 ×</button></header><div class="video-grid" data-video-group><figure class="video-card"><figcaption><b>生成参考视频</b><small>作者引导序列</small></figcaption><video controls muted loop playsinline preload="metadata" poster="assets/house-init.png" aria-label="生成参考视频"><source src="assets/house-generated.mp4" type="video/mp4"></video></figure><figure class="video-card"><figcaption><b>固定目标 MSE</b><small>作者优化过程</small></figcaption><video controls muted loop playsinline preload="metadata" poster="assets/house-init.png" aria-label="固定目标 MSE"><source src="assets/house-mse.mp4" type="video/mp4"></video></figure><figure class="video-card"><figcaption><b>VNC</b><small>作者优化过程</small></figcaption><video controls muted loop playsinline preload="metadata" poster="assets/house-init.png" aria-label="VNC"><source src="assets/house-vnc.mp4" type="video/mp4"></video></figure></div><div class="video-tools"><button class="text-button" data-play-group>同时播放 / 重播</button><button class="text-button" data-pause-group>暂停</button></div></dialog>
+<dialog class="demo-dialog" data-demo-dialog="dragon" aria-label="作者 Dragon · 几何优化 视频对比"><header><h2>作者视频 · Dragon · 几何优化</h2><button class="figure-close" type="button" data-close-demo>关闭 ×</button></header><div class="video-grid" data-video-group><figure class="video-card"><figcaption><b>生成参考视频</b><small>作者引导序列</small></figcaption><video controls muted loop playsinline preload="metadata" poster="assets/dragon-init.png" aria-label="生成参考视频"><source src="assets/dragon-generated.mp4" type="video/mp4"></video></figure><figure class="video-card"><figcaption><b>固定目标 MSE</b><small>作者优化过程</small></figcaption><video controls muted loop playsinline preload="metadata" poster="assets/dragon-init.png" aria-label="固定目标 MSE"><source src="assets/dragon-mse.mp4" type="video/mp4"></video></figure><figure class="video-card"><figcaption><b>VNC</b><small>作者优化过程</small></figcaption><video controls muted loop playsinline preload="metadata" poster="assets/dragon-init.png" aria-label="VNC"><source src="assets/dragon-vnc.mp4" type="video/mp4"></video></figure></div><div class="video-tools"><button class="text-button" data-play-group>同时播放 / 重播</button><button class="text-button" data-pause-group>暂停</button></div></dialog>
+  <noscript><p style="position:fixed;bottom:0;background:#fafaf6;padding:12px">请允许浏览器执行本地 JavaScript，以使用翻页。也可以打印此文件查看全部 16 页。</p></noscript>
+</body>
+</html>
